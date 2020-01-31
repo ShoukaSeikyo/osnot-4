@@ -6,3 +6,4 @@ output/
 test/
 todo.txt
 package-lock.json
+background.channel
