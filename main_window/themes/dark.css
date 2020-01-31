@@ -1,0 +1,346 @@
+/*
+ *   ui-audio-file, AudioFile.js
+ */
+
+ ui-audio-file input[type="range"]::-webkit-slider-thumb {
+    background-color: var(--color-3);
+}
+
+ui-audio-file input[type="range"]:disabled::-webkit-slider-thumb {
+    background-color: var(--color-6);
+}
+
+ui-audio-file label {
+    background-color: var(--color-3);
+}
+
+ui-audio-file ui-audio-icon[svg="play"] {
+    background-color: var(--color-3);
+}
+
+ui-audio-file ui-audio-icon[disabled] {
+    background-color: var(--color-6);
+}
+
+ui-audio-file label svg path, ui-audio-file ui-audio-icon[svg="play"] svg path {
+    fill: var(--color-1);
+}
+
+ui-audio-file input[type="range"]:disabled {
+    background: linear-gradient(90deg, var(--color-6) 0, var(--color-6) calc(var(--range-value) * 100%), var(--color-6) calc(var(--range-value) * 100%), var(--color-6) 100%);
+}
+
+ui-audio-file input[type="range"] {
+    background: linear-gradient(90deg, var(--color-3) 0, var(--color-3) calc(var(--range-value) * 100%), var(--color-6) calc(var(--range-value) * 100%), var(--color-6) 100%);
+}
+
+ui-audio-file ui-audio-icon[svg="volume-high"] svg path {
+    fill: var(--color-6);
+}
+
+/*
+ *   ui-confirm-button, ConfirmButton.js
+ */
+
+ui-confirm-button {
+    background-color: white;
+    color: var(--color-2);
+    background: repeating-linear-gradient(90deg, var(--color-10) 0, var(--color-10) 50%, var(--color-6) 50%, var(--color-6) 100%);
+}
+
+ui-confirm-button svg path {
+    fill: var(--color-2);
+}
+
+/*
+ *   ui-context-menu, ContextMenu.js
+ */
+
+ui-context-menu {
+    background-color: var(--color-11);
+    border-color: var(--color-6);
+    color: #000;
+}
+
+/*
+ *   ui-context-element, ContextMenuElement.js
+ */
+
+ui-context-element:hover {
+    background-color: var(--color-1);
+}
+
+/*
+ *   ui-hide-overlay, HideOverlay.js
+ */
+
+ui-hide-overlay {
+    background-color: var(--color-3);
+}
+
+/*
+ *   ui-icon, Icon.js
+ */
+
+ui-icon polygon {
+    fill: var(--color-2);
+}
+
+ui-icon path {
+    fill: var(--color-2);
+}
+
+/*
+ *   ui-information, Information.js
+ */
+
+ui-information:not(:last-of-type) {
+    border-bottom-color: var(--color-6);
+}
+
+ui-information ui-icon svg path {
+    fill: var(--color-6);
+}
+
+ui-information ui-text:nth-of-type(2) {
+    color: var(--color-5);
+}
+
+/*
+ *   ui-main-header, MainHeader.js
+ */
+
+ui-main-header {
+    background-color: var(--color-2);
+}
+
+ui-main-header ui-icon {
+    background-color: var(--color-3);
+}
+
+ui-main-header ui-title {
+    color: var(--color-5);
+}
+
+ui-main-header ui-logo svg circle:nth-child(1) {
+    fill: var(--color-2);
+}
+
+ui-main-header ui-logo svg circle:nth-child(2) {
+    stroke: var(--color-3);
+}
+
+ui-main-header ui-logo svg polygon:nth-child(3) {
+    fill: var(--color-3);
+}
+
+ui-main-header ui-logo svg polygon:nth-child(4) {
+    fill: var(--color-2);
+}
+
+ui-main-header ui-search-bar {
+    background-color: var(--color-3);
+}
+
+ui-main-header ui-search-bar input {
+    border-color: var(--color-2);
+    color: var(--color-2);
+    background-color: var(--color-3);
+}
+
+ui-main-header triangle {
+    border-color: transparent var(--color-3) transparent;
+}
+
+/*
+ *   ui-page, Page.js
+ */
+
+ui-page {
+    background-color: var(--color-1);
+    color: #000;
+}
+
+/*
+ *   ui-page-header, PageHeader.js
+ */
+
+ui-page-header {
+    background-color: var(--color-3);
+}
+
+ui-page-header ui-title {
+    color: var(--color-2);
+}
+
+/*
+ *   ui-scrollbar, ScrollBar.js
+ */
+
+ui-scrollbar {
+    background-color: var(--color-3);
+}
+
+/*
+ *   ui-snackbar, SnackBar.js
+ */
+
+ui-snackbar {
+    background-color: var(--color-14);
+}
+
+/*
+ *   ui-snackbar-button, SnackBar.js
+ */
+
+ui-snackbar-button {
+    color: var(--color-13);
+}
+
+ui-snackbar-button:hover {
+    border-color: var(--color-9);
+}
+
+/*
+ *   ui-snackbar-text, SnackBar.js
+ */
+
+ui-snackbar-text {
+    color: var(--color-1);
+}
+
+/*
+ *   ui-stream, Stream.js
+ */
+
+ui-stream {
+    background-color: var(--color-3);
+}
+
+ui-stream favicon {
+    background-color: var(--color-2);
+}
+
+/*
+ *   ui-stream-infos, StreamInfo.js
+ */
+
+ui-stream-infos {
+    border-color: var(--color-6);
+    color: #000;
+    background-color: var(--color-2);
+}
+
+ui-stream-infos ui-avatar {
+    background-color: var(--color-2);
+}
+
+ui-stream-infos ui-stream-info {
+    color: var(--color-9);
+}
+
+ui-stream-infos ui-stream-info path {
+    fill: var(--color-3);
+}
+
+ui-stream-infos ui-stream-info[info="viewers"], ui-stream-infos ui-stream-info[info="username"] {
+    background-color: var(--color-3);
+    color: var(--color-2);
+}
+
+ui-stream-infos ui-stream-info[info="viewers"] path {
+    fill: var(--color-2);
+}
+
+ui-stream-infos ui-stream-info[info="edit"] {
+    border-top: solid 1px var(--color-6);
+}
+
+ui-stream-infos ui-stream-info[info="edit"]:hover {
+    background-color: var(--color-3);
+    color: var(--color-2);
+    border-color: var(--color-3);
+}
+
+ui-stream-infos ui-stream-info[info="edit"]:hover svg path {
+    fill: var(--color-2);
+}
+
+/*
+ *   ui-stream-list, StreamList.js
+ */
+
+ui-stream-list {
+    background-color: var(--color-1);
+}
+
+/*
+ *   ui-switch, Switch.js
+ */
+
+ui-switch[border] {
+    border-color: var(--color-6);
+}
+
+ui-switch ui-switch-icon svg path {
+    fill: var(--color-6);
+}
+
+ui-switch label svg path {
+    fill: var(--color-6);
+}
+
+ui-switch label input:checked+svg path {
+    fill: var(--color-3);
+}
+
+/*
+ *   ui-theme-template, ThemeTemplate.js
+ */
+
+ui-theme-template {
+    background-color: var(--color-1);
+    border-color: var(--color-3);
+}
+
+ui-theme-template ui-theme-header {
+    background-color: var(--color-2);
+}
+
+ui-theme-template ui-theme-overlay {
+    background-color: var(--color-3);
+}
+
+ui-theme-template ui-theme-title {
+    color: var(--color-3);
+    background-color: var(--color-2);
+}
+
+ui-theme-template ui-theme-icon {
+    background-color: var(--color-2);
+}
+
+ui-theme-template ui-theme-triangle {
+    border-color: transparent var(--color-3) transparent;
+}
+
+/*
+ *   ui-title-section, TitleSection.js
+ */
+
+ui-title-section {
+    color: var(--color-3);
+}
+
+/*
+ *   ui-user-info, UserInfo.js
+ */
+
+ui-user-info ui-avatar {
+    background-color: var(--color-6);
+}
+
+ui-user-info input {
+    border-color: var(--color-6);
+    color: var(--color-9);
+}

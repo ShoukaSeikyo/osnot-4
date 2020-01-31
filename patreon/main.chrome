@@ -1,0 +1,10 @@
+{
+  "name": "popup",
+  "type": "js",
+  "files": [
+    "shared/Channel",
+    "chrome/Channel",
+
+    "app/patreon"
+  ]
+}

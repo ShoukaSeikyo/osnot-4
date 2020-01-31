@@ -1,0 +1,1 @@
+App.load('background', 'chrome');

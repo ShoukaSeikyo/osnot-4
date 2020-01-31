@@ -1,0 +1,26 @@
+{
+  "name": "background",
+  "type": "js",
+  "files": [
+    "chrome/AudioWrapper",
+    "chrome/Badge",
+    "chrome/Browser",
+    "chrome/Channel",
+    "chrome/ImageCache",
+    "chrome/Scanner",
+    "chrome/Storage",
+    "chrome/StreamNotification",
+
+    "shared/AudioWrapper",
+    "shared/Badge",
+    "shared/Browser",
+    "shared/Channel",
+    "shared/ImageCache",
+    "shared/Scanner",
+    "shared/Server",
+    "shared/Settings",
+    "shared/Storage",
+    "shared/Stream",
+    "shared/StreamNotification"
+  ]
+}

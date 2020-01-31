@@ -1,0 +1,134 @@
+{
+	"EDIT_STREAM": {
+		"message": "Edit a Stream.",
+		"description": ""
+	},
+	"NOTIFICATION_DESKTOP": {
+		"message": "Desktop Notification.",
+		"description": ""
+	},
+	"NOTIFICATION_TAB": {
+		"message": "Automatically open in a new tab.",
+		"description": ""
+	},
+	"NOTIFICATION_AUDIO": {
+		"message": "Sound notification.",
+		"description": ""
+	},
+	"NOTIFICATION_AUDIO_CUSTOM_CUE": {
+		"message": "Custom sound notification.",
+		"description": ""
+	},
+	"DELETE_STREAM": {
+		"message": "Delete",
+		"description": ""
+	},
+	"STREAM_EDIT": {
+		"message": "Edit",
+		"description": ""
+	},
+
+
+
+
+
+
+
+	"HELP": {
+		"message": "Help",
+		"description": ""
+	},
+	"INFORMATIONS": {
+		"message": "Informations",
+		"description": ""
+	},
+	"VERSION": {
+		"message": "Version",
+		"description": ""
+	},
+	"CONTACT": {
+		"message": "Contact",
+		"description": ""
+	},
+	"EMAIL": {
+		"message": "Email adress",
+		"description": ""
+	},
+	"TWITTER": {
+		"message": "Twitter",
+		"description": ""
+	},
+
+
+
+
+
+
+
+	"SETTINGS": {
+		"message": "Settings",
+		"description": ""
+	},
+	"THEMES": {
+		"message": "Themes",
+		"description": ""
+	},
+	"MUTE_NOTIFICATIONS": {
+		"message": "Mute all notifications",
+		"description": ""
+	},
+	"ADD": {
+		"message": "Add",
+		"description": ""
+	},
+	"SEARCH": {
+		"message": "Search",
+		"description": ""
+	},
+
+
+
+
+
+
+
+	"GENERAL": {
+		"message": "Default stream settings",
+		"description": ""
+	},
+	"NOTIFICATION_DESKTOP_GLOBAL": {
+		"message": "Enable desktop notifications by default.",
+		"description": ""
+	},
+	"NOTIFICATION_TAB_GLOBAL": {
+		"message": "Open in a new tab automatically by default.",
+		"description": ""
+	},
+	"NOTIFICATION_AUDIO_GLOBAL": {
+		"message": "Enable sound notification by default.",
+		"description": ""
+	},
+	"NOTIFICATION_AUDIO_CUSTOM_CUE_SECTION": {
+		"message": "Custom global notification sound.",
+		"description": ""
+	},
+	"NOTIFICATION_AUDIO_CUSTOM_CUE_GLOBAL": {
+		"message": "Sound.",
+		"description": ""
+	},
+
+
+
+
+
+
+
+	"NOTIFICATION_DESKTOP_OPEN": {
+		"message": "Open",
+		"description": ""
+	},
+	"NOTIFICATION_DESKTOP_DISMISS": {
+		"message": "Dismiss",
+		"description": ""
+	}
+}

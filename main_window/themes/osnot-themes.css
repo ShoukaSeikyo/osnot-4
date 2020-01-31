@@ -1,0 +1,136 @@
+*[theme="osnot-original"] {
+    --color-1: rgb(241, 241, 241); /* bg */
+    --color-2: rgb(246, 246, 246); /* title */
+    --color-3: rgb(33, 150, 243); /* header */
+    --color-4: rgb(113, 156, 252); /* context-menu select */
+    --color-5: rgb(130, 130, 130);
+    --color-6: rgb(175, 175, 175);
+    --color-7: rgb(255, 160, 0);
+    --color-8: rgb(230, 230, 230);
+    --color-9: rgb(64, 64, 64);
+    --color-10: rgb(237, 94, 104);
+    --color-11: rgb(255, 255, 255);
+    --color-12: rgb(112, 162, 255);
+    --color-13: rgb(0, 191, 154);
+  }
+  
+  *[theme="osnot-original-red"] {
+    --color-1: rgb(241, 241, 241);
+    --color-2: rgb(246, 246, 246);
+    --color-3: #900202;
+    --color-4: rgb(113, 156, 252);
+    --color-5: rgb(130, 130, 130);
+    --color-6: rgb(175, 175, 175);
+    --color-7: rgb(255, 160, 0);
+    --color-8: rgb(230, 230, 230);
+    --color-9: rgb(64, 64, 64);
+    --color-10: rgb(237, 94, 104);
+    --color-11: rgb(255, 255, 255);
+    --color-12: rgb(112, 162, 255);
+    --color-13: rgb(0, 191, 154);
+  }
+  
+  *[theme="osnot-blue"] {
+    --color-1: #E3F2FD;
+    --color-2: rgb(246, 246, 246);
+    --color-3: #2196F3;
+  }
+  
+  *[theme="osnot-blue-gray"] {
+    --color-3: rgb(96, 125, 139);
+    --color-2: rgb(246, 246, 246);
+    --color-1: rgb(236, 239, 241);
+  }
+  
+  *[theme="osnot-brown"] {
+    --color-3: rgb(121, 85, 72);
+    --color-2: rgb(246, 246, 246);
+    --color-1: rgb(239, 235, 233);
+  }
+  
+  *[theme="osnot-deep-purple"] {
+    --color-3: rgb(103, 58, 183);
+    --color-2: rgb(246, 246, 246);
+    --color-1: rgb(237, 231, 246);
+  }
+  
+  *[theme="osnot-green"] {
+    --color-3: rgb(76, 175, 80);
+    --color-2: rgb(246, 246, 246);
+    --color-1: rgb(232, 245, 233);
+  }
+  
+  *[theme="osnot-indigo"] {
+    --color-3: rgb(63, 81, 181);
+    --color-2: rgb(246, 246, 246);
+    --color-1: rgb(232, 234, 246);
+  }
+  
+  *[theme="osnot-light-blue"] {
+    --color-3: rgb(3, 169, 244);
+    --color-2: rgb(246, 246, 246);
+    --color-1: rgb(225, 245, 254);
+  }
+  
+  *[theme="osnot-orange"] {
+    --color-3: #FF9800;
+    --color-2: rgb(246, 246, 246);
+    --color-1: #FFF3E0;
+  }
+  
+  *[theme="osnot-pink"] {
+    --color-3: #F06292;
+    --color-2: #FCE4EC;
+    --color-1: #F7CDDB;
+  }
+  
+  /* *[theme="osnot-pink"] ui-information ui-text:nth-of-type(2) {
+    color: #E1E1E1;
+  }
+  *[theme="osnot-pink"] ui-information ui-icon svg path {
+    fill: #F1F1F1;
+  } */
+  
+  *[theme="osnot-purple"] {
+    --color-3: rgb(156, 39, 176);
+    --color-2: rgb(246, 246, 246);
+    --color-1: rgb(243, 229, 245);
+  }
+  
+  *[theme="osnot-teal"] {
+    --color-3: rgb(0, 150, 136);
+    --color-2: rgb(246, 246, 246);
+    --color-1: rgb(224, 242, 241);
+  }
+  
+  /* Dark THEME */
+  
+  
+  /* Shizuku THEME */
+  *[theme="osnot-shizuku-edition"] {
+    --color-1: rgb(241, 241, 241); /* bg */
+    --color-2: rgb(246, 246, 246); /* title */
+    --color-3: rgb(33, 150, 243); /* header */
+    --color-4: rgb(113, 156, 252); /* context-menu select */
+    --color-5: rgb(130, 130, 130);
+    --color-6: rgb(175, 175, 175);
+    --color-7: rgb(255, 160, 0);
+    --color-8: rgb(230, 230, 230);
+    --color-9: rgb(64, 64, 64);
+    --color-10: rgb(237, 94, 104);
+    --color-11: rgb(255, 255, 255);
+    --color-12: rgb(112, 162, 255);
+    --color-13: rgb(0, 191, 154);
+  }
+  *[theme="osnot-shizuku-edition"] ui-page {
+    background-image: url("/static/ShizukuBackground-125.png");
+    /* background-size: */
+  }
+  ui-theme[theme="osnot-shizuku-edition"] {
+    background-image: url("/static/SDdiskStatusGood-100.png");
+    background-size: var(--normal-2) auto;
+  }
+  ui-theme[theme="osnot-shizuku-edition"] ui-theme-title {
+    margin: calc(100% - var(--normal-size)) 0px 0px 0px;
+  }
+  

@@ -1,0 +1,134 @@
+{
+	"EDIT_STREAM": {
+		"message": "Éditer un stream.",
+		"description": ""
+	},
+	"NOTIFICATION_DESKTOP": {
+		"message": "Notification de bureau.",
+		"description": ""
+	},
+	"NOTIFICATION_TAB": {
+		"message": "Ouverture automatique dans un nouvel onglet.",
+		"description": ""
+	},
+	"NOTIFICATION_AUDIO": {
+		"message": "Notification sonore.",
+		"description": ""
+	},
+	"NOTIFICATION_AUDIO_CUSTOM_CUE": {
+		"message": "Son personnalisé.",
+		"description": ""
+	},
+	"DELETE_STREAM": {
+		"message": "Supprimer",
+		"description": ""
+	},
+	"STREAM_EDIT": {
+		"message": "Modifier",
+		"description": ""
+	},
+
+
+
+
+
+
+
+	"HELP": {
+		"message": "Aide",
+		"description": ""
+	},
+	"INFORMATIONS": {
+		"message": "Informations",
+		"description": ""
+	},
+	"VERSION": {
+		"message": "Version",
+		"description": ""
+	},
+	"CONTACT": {
+		"message": "Contact",
+		"description": ""
+	},
+	"EMAIL": {
+		"message": "Adresse Mail",
+		"description": ""
+	},
+	"TWITTER": {
+		"message": "Twitter",
+		"description": ""
+	},
+
+
+
+
+
+	
+
+	"SETTINGS": {
+		"message": "Paramètres",
+		"description": ""
+	},
+	"THEMES": {
+		"message": "Thèmes",
+		"description": ""
+	},
+	"MUTE_NOTIFICATIONS": {
+		"message": "Désactiver les notifications",
+		"description": ""
+	},
+	"ADD": {
+		"message": "Ajouter",
+		"description": ""
+	},
+	"SEARCH": {
+		"message": "Rechercher",
+		"description": ""
+	},
+
+
+
+
+
+	
+
+	"GENERAL": {
+		"message": "Option de stream par défaut",
+		"description": ""
+	},
+	"NOTIFICATION_DESKTOP_GLOBAL": {
+		"message": "Activer les notifications de bureau par défaut.",
+		"description": ""
+	},
+	"NOTIFICATION_TAB_GLOBAL": {
+		"message": "Activer l'ouverture automatique dans un nouvel onglet par défaut.",
+		"description": ""
+	},
+	"NOTIFICATION_AUDIO_GLOBAL": {
+		"message": "Activer les notifications sonores par défaut.",
+		"description": ""
+	},
+	"NOTIFICATION_AUDIO_CUSTOM_CUE_SECTION": {
+		"message": "Son personnalisé global.",
+		"description": ""
+	},
+	"NOTIFICATION_AUDIO_CUSTOM_CUE_GLOBAL": {
+		"message": "Son personnalisé.",
+		"description": ""
+	},
+
+
+
+
+
+
+
+	"NOTIFICATION_DESKTOP_OPEN": {
+		"message": "Ouvrir",
+		"description": ""
+	},
+	"NOTIFICATION_DESKTOP_DISMISS": {
+		"message": "Fermer",
+		"description": ""
+	}
+}

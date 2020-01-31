@@ -1,0 +1,44 @@
+{
+	"manifest_version" : 2,
+
+	"name" : "Orandja Stream Notifier",
+	"description" : "The best extension to follow your favorites livestreams everywhere.",
+	"version" : "4.0.0",
+	"permissions" : [
+		"activeTab",
+		"notifications",
+		"storage",
+		"unlimitedStorage",
+		"https://www.googleapis.com/",
+		"*://*.mixer.com/*",
+		"*://*.embedly.com/*",
+		"*://*.livestream.com/*",
+		"*://*.smashcast.tv/*",
+		"*://*.hitbox.tv/*",
+		"*://*.dailymotion.com/*",
+		"*://*.dmcdn.net/*",
+		"*://*.twitch.tv/*",
+		"*://*.jtvnw.net/",
+		"*://*.beam.pro/api/*",
+		"*://*.ggpht.com/*",
+		"*://*.ytimg.com/*",
+		"*://*.youtube.com/*",
+		"*://*.picarto.tv/*"
+	],
+	"optional_permissions": [
+		"clipboardRead",
+		"clipboardWrite"
+	],
+	"browser_action" : {
+		"default_popup" : "main_window/app.html"
+	},
+	"web_accessible_resources": [],
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+	"default_locale" : "en",
+	"background": {
+		"scripts": [
+			"App.js",
+			"Chrome.js"
+		]
+	}
+}
