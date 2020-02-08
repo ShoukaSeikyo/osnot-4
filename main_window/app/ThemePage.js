@@ -1,5 +1,5 @@
 //#Channel;
-//#ui-component-page as Page, ui-component-page-header as PageHeader, ui-component-theme-template as ThemeTemplate, ui-component-information as Information;
+//#ui-component-page as Page, ui-component-page-header as PageHeader, ui-component-theme-template as ThemeTemplate, ui-component-information as Information, ui-component-slider as Slider;
 
 /////////////////////
 // COMPONENT SETUP //
@@ -17,7 +17,7 @@ const Themes = {
     'osnot-orange': 'Orange',
     'osnot-pink': 'Pink',
     'osnot-teal': 'Teal',
-    // 'osnot-dark': 'Dark'
+    'osnot-dark': 'Dark'
 };
 const selectedTheme = await Channel.get('settings').dispatch('get', { name: 'theme', getValue: 'osnot-original' });
 
@@ -25,18 +25,18 @@ document.body.setAttribute('theme', selectedTheme);
 
 const themePage = new Page()
     .setProperty('name', 'theme-page')
-.add(new PageHeader()
-    .setProperty('pageTitle', /*τ(THEMES,{ })*/));
+    .add(new PageHeader()
+        .setProperty('pageTitle'));
 
-for(let key in Themes) {
+for (let key in Themes) {
     const id = key;
     themePage.add(new ThemeTemplate()
-    .setProperty('name', Themes[id])
-    .setProperty('themeID', id)
-    .onEvent('click', async ({ component }) => {
-        await Channel.get('settings').dispatch('set', { name: 'theme', setValue: id });
-        document.body.setAttribute('theme', id);
-    }));
+        .setProperty('name', Themes[id])
+        .setProperty('themeID', id)
+        .onEvent('click', async ({ component }) => {
+            await Channel.get('settings').dispatch('set', { name: 'theme', setValue: id });
+            document.body.setAttribute('theme', id);
+        }));
 }
 
 
@@ -45,10 +45,10 @@ for(let key in Themes) {
 //////////////////////
 
 themePage
-.onData('setup', async () => {
-    themePage.updateData('visible', true);
-    themePage.removeData('setup');
-});
+    .onData('setup', async () => {
+        themePage.updateData('visible', true);
+        themePage.removeData('setup');
+    });
 
 //////////////////////
 // COMPONENT APPEND //

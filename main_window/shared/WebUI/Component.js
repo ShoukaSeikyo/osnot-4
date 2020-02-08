@@ -266,10 +266,10 @@ const Component = class {
      * @param {object} value
      * @returns {Component}
      */
-    updateData(_name, value) {
-        if (this.getData(_name) !== value) {
-            this.setData(_name, value);
-            this.dataHandlers.forEach(({ name, handler }) => {
+    updateData(name, value) {
+        if (this.getData(name) !== value) {
+            this.setData(name, value);
+            this.dataHandlers.forEach(({ name: _name, handler }) => {
                 if (name === _name) {
                     handler(value);
                 }

@@ -19,6 +19,7 @@
     "shared/WebUI/Page",
     "shared/WebUI/PageHeader",
     "shared/WebUI/ScrollBar",
+    "shared/WebUI/Slider",
     "shared/WebUI/SnackBar",
     "shared/WebUI/StreamInfo",
     "shared/WebUI/StreamList",

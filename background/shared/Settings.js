@@ -8,8 +8,7 @@ const Settings = class {
         this.setDefault('notify', 7);
         this.setDefault('theme', 'osnot-original');
         this.setDefault('per-row', 6);
-        this.setDefault('server-url', `http://localhost:99`);
-        this.setDefault('scanner-url', `http://localhost:100`);
+        this.setDefault('server-url', `https://osnot.orandja.net`);
     }
 
     setDefault(name, value) {

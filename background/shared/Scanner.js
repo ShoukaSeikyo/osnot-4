@@ -4,7 +4,7 @@ let INSTANCE;
 const Scanner = class {
 
     static get URL() {
-        return Settings.getValue('server', `http://localhost:99`);
+        return Settings.getValue('server-url');
     }
 
     constructor() {

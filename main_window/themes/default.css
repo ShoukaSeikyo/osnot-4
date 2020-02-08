@@ -28,20 +28,77 @@ html {
 }
 
 body {
-    --color-1: rgb(241, 241, 241);
-    --color-2: rgb(246, 246, 246);
-    --color-3: rgb(33, 150, 243);
-    --color-4: rgb(113, 156, 252);
-    --color-5: rgb(130, 130, 130);
-    --color-6: rgb(175, 175, 175);
-    --color-7: rgb(255, 160, 0);
-    --color-8: rgb(230, 230, 230);
-    --color-9: rgb(64, 64, 64);
-    --color-10: rgb(237, 94, 104);
-    --color-11: rgb(255, 255, 255);
-    --color-12: rgb(112, 162, 255);
-    --color-13: rgb(0, 191, 154);
-    --color-14: rgb(50, 50, 50);
+    --color-l: 1;
+    --color-1-h: 0;
+    --color-1-s: 0%;
+    --color-1-l: 94.5%;
+    --color-1-a: 1;
+    --color-1: hsla(var(--color-1-h), var(--color-1-s), var(--color-1-l), var(--color-1-a));
+    --color-2-h: 0deg;
+    --color-2-s: 0.0%;
+    --color-2-l: 96.5%;
+    --color-2-a: 1;
+    --color-2: hsla(var(--color-2-h), var(--color-2-s), var(--color-2-l), var(--color-2-a));
+    --color-3-h: 207deg;
+    --color-3-s: 89.7%;
+    --color-3-l: 54.1%;
+    --color-3-a: 1;
+    --color-3: hsla(var(--color-3-h), var(--color-3-s), var(--color-3-l), var(--color-3-a));
+    --color-4-h: 221deg;
+    --color-4-s: 95.9%;
+    --color-4-l: 71.6%;
+    --color-4-a: 1;
+    --color-4: hsla(var(--color-4-h), var(--color-4-s), var(--color-4-l), var(--color-4-a));
+    --color-5-h: 0deg;
+    --color-5-s: 0.0%;
+    --color-5-l: 51.0%;
+    --color-5-a: 1;
+    --color-5: hsla(var(--color-5-h), var(--color-5-s), var(--color-5-l), var(--color-5-a));
+    --color-6-h: 0deg;
+    --color-6-s: 0.0%;
+    --color-6-l: 68.6%;
+    --color-6-a: 1;
+    --color-6: hsla(var(--color-6-h), var(--color-6-s), var(--color-6-l), var(--color-6-a));
+    --color-7-h: 38deg;
+    --color-7-s: 100.0%;
+    --color-7-l: 50.0%;
+    --color-7-a: 1;
+    --color-7: hsla(var(--color-7-h), var(--color-7-s), var(--color-7-l), var(--color-7-a));
+    --color-8-h: 0deg;
+    --color-8-s: 0.0%;
+    --color-8-l: 90.2%;
+    --color-8-a: 1;
+    --color-8: hsla(var(--color-8-h), var(--color-8-s), var(--color-8-l), var(--color-8-a));
+    --color-9-h: 0deg;
+    --color-9-s: 0.0%;
+    --color-9-l: 25.1%;
+    --color-9-a: 1;
+    --color-9: hsla(var(--color-9-h), var(--color-9-s), var(--color-9-l), var(--color-9-a));
+    --color-10-h: 356deg;
+    --color-10-s: 79.9%;
+    --color-10-l: 64.9%;
+    --color-10-a: 1;
+    --color-10: hsla(var(--color-10-h), var(--color-10-s), var(--color-10-l), var(--color-10-a));
+    --color-11-h: 0deg;
+    --color-11-s: 0.0%;
+    --color-11-l: 100.0%;
+    --color-11-a: 1;
+    --color-11: hsla(var(--color-11-h), var(--color-11-s), var(--color-11-l), var(--color-11-a));
+    --color-12-h: 219deg;
+    --color-12-s: 100.0%;
+    --color-12-l: 72.0%;
+    --color-12-a: 1;
+    --color-12: hsla(var(--color-12-h), var(--color-12-s), var(--color-12-l), var(--color-12-a));
+    --color-13-h: 168deg;
+    --color-13-s: 100.0%;
+    --color-13-l: 37.5%;
+    --color-13-a: 1;
+    --color-13: hsla(var(--color-13-h), var(--color-13-s), var(--color-13-l), var(--color-13-a));
+    --color-14-h: 0deg;
+    --color-14-s: 0.0%;
+    --color-14-l: 19.6%;
+    --color-14-a: 1;
+    --color-14: hsla(var(--color-14-h), var(--color-14-s), var(--color-14-l), var(--color-14-a));
 }
 
 html, body {
@@ -121,7 +178,6 @@ ui-audio-file ui-audio-icon[svg="volume-high"] svg path {
  */
 
 ui-confirm-button {
-    background-color: white;
     color: var(--color-2);
     background: repeating-linear-gradient(90deg, var(--color-10) 0, var(--color-10) 50%, var(--color-6) 50%, var(--color-6) 100%);
 }
@@ -257,6 +313,29 @@ ui-page-header ui-title {
 
 ui-scrollbar {
     background-color: var(--color-3);
+}
+
+/*
+ *   ui-audio-file, AudioFile.js
+ */
+
+ ui-slider input[type="range"]::-webkit-slider-thumb {
+    background-color: var(--color-3);
+}
+
+ui-slider input[type="range"]:disabled::-webkit-slider-thumb {
+    background-color: var(--color-6);
+}
+ui-slider ui-slider-icon svg path {
+    fill: var(--color-6);
+}
+
+ui-slider input[type="range"]:disabled {
+    background: linear-gradient(90deg, var(--color-6) 0, var(--color-6) calc(var(--range-value) * 100%), var(--color-6) calc(var(--range-value) * 100%), var(--color-6) 100%);
+}
+
+ui-slider input[type="range"] {
+    background: linear-gradient(90deg, var(--color-3) 0, var(--color-3) calc(var(--range-value) * 100%), var(--color-6) calc(var(--range-value) * 100%), var(--color-6) 100%);
 }
 
 /*

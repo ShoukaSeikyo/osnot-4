@@ -1,6 +1,5 @@
-//#Stream, Throttle, Settings, Patreon;
+//#Stream, Throttle, Settings;
 
-const ServerLimits = await (await fetch(`${ Settings.getValue('server-url', `http://localhost:99`) }/limits`)).json();
 const ServerPool = class {
 
     constructor() {
@@ -44,7 +43,7 @@ const ServerPool = class {
 
     createConnection() {
         this.kill();
-        this.eventSource = new EventSource(`${Server.URL}/stream/?id[]=${this.onlyID.join('&id[]=')}&token=${Patreon.osnotToken.token || false}`);
+        this.eventSource = new EventSource(`${Server.URL}/stream/?id[]=${this.onlyID.join('&id[]=')}`);
 
         this.eventSource.addEventListener('message', ({data}) => {
             const { fullID, cache } = JSON.parse(data);
@@ -76,11 +75,11 @@ const ServerPool = class {
     }
 };
 
-let MaximumPools = 10;
+let MaximumPools = 3;
 const Server = class {
 
     static get URL() {
-        return Settings.getValue('server-url', `http://localhost:99`);
+        return Settings.getValue('server-url');
     }
 
     constructor() {
