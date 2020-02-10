@@ -1,4 +1,9 @@
 {
+	"ONLINE_STREAMS": {
+		"message": "Streams en ligne",
+		"description": ""
+	},
+
 	"EDIT_STREAM": {
 		"message": "Éditer un stream.",
 		"description": ""

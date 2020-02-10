@@ -9,7 +9,7 @@ const streamList = new StreamList()
 const fullInfoPage = new Page()
     .setProperty('name', 'full-stream-page')
 .add(new PageHeader()
-    .setProperty('pageTitle', ''))
+    .setProperty('pageTitle', /*τ(ONLINE_STREAMS,{ })*/))
 .add(streamList);
 
 //////////////////////

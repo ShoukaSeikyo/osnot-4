@@ -25,6 +25,7 @@
 *[theme="osnot-dark"] ui-audio-file label svg path {
     fill: #FFFFFF;
 }
+
 *[theme="osnot-dark"] ui-audio-file ui-audio-icon[svg="play"] svg path {
     fill: #FFFFFF;
 }
@@ -284,6 +285,7 @@
     background-color: #121212;
     color: #FFFFFF;
 }
+
 *[theme="osnot-dark"] ui-stream-infos ui-stream-info[info="username"] {
     background-color: #121212;
     color: #FFFFFF;
@@ -311,34 +313,35 @@
  *   ui-stream-infos-lite, StreamInfoLite.js
  */
 
-ui-stream-infos-lite {
+*[theme="osnot-dark"] ui-stream-infos-lite {
     border-color: #FFFFFF;
     color: #FFFFFF;
     background-color: #505050;
 }
 
-ui-stream-infos-lite ui-avatar {
+*[theme="osnot-dark"] ui-stream-infos-lite ui-avatar {
     background-color: #121212;
 }
 
-ui-stream-infos-lite ui-stream-info {
+*[theme="osnot-dark"] ui-stream-infos-lite ui-stream-info {
     color: #FFFFFF;
 }
 
-ui-stream-infos-lite ui-stream-info path {
+*[theme="osnot-dark"] ui-stream-infos-lite ui-stream-info path {
     fill: #FFFFFF;
 }
 
-ui-stream-infos-lite ui-stream-info[info="viewers"] {
-    background-color: #121212;
-    color: #FFFFFF;
-}
-ui-stream-infos-lite ui-stream-info[info="username"] {
+*[theme="osnot-dark"] ui-stream-infos-lite ui-stream-info[info="viewers"] {
     background-color: #121212;
     color: #FFFFFF;
 }
 
-ui-stream-infos-lite ui-stream-info[info="viewers"] path {
+*[theme="osnot-dark"] ui-stream-infos-lite ui-stream-info[info="username"] {
+    background-color: #121212;
+    color: #FFFFFF;
+}
+
+*[theme="osnot-dark"] ui-stream-infos-lite ui-stream-info[info="viewers"] path {
     fill: #FFFFFF;
 }
 
