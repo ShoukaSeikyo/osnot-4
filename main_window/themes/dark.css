@@ -2,7 +2,7 @@
  *   ui-audio-file, AudioFile.js
  */
 
-*[theme="osnot-dark"]  ui-audio-file input[type="range"]::-webkit-slider-thumb {
+*[theme="osnot-dark"] ui-audio-file input[type="range"]::-webkit-slider-thumb {
     background-color: #FFFFFF;
 }
 
@@ -22,7 +22,10 @@
     background-color: #505050;
 }
 
-*[theme="osnot-dark"] ui-audio-file label svg path, *[theme="osnot-dark"] ui-audio-file ui-audio-icon[svg="play"] svg path {
+*[theme="osnot-dark"] ui-audio-file label svg path {
+    fill: #FFFFFF;
+}
+*[theme="osnot-dark"] ui-audio-file ui-audio-icon[svg="play"] svg path {
     fill: #FFFFFF;
 }
 
@@ -192,13 +195,14 @@
  *   ui-audio-file, AudioFile.js
  */
 
-*[theme="osnot-dark"]  ui-slider input[type="range"]::-webkit-slider-thumb {
+*[theme="osnot-dark"] ui-slider input[type="range"]::-webkit-slider-thumb {
     background-color: var(--color-3);
 }
 
 *[theme="osnot-dark"] ui-slider input[type="range"]:disabled::-webkit-slider-thumb {
     background-color: #505050;
 }
+
 *[theme="osnot-dark"] ui-slider ui-slider-icon svg path {
     fill: #FFFFFF;
 }
@@ -259,15 +263,16 @@
 *[theme="osnot-dark"] ui-stream-infos {
     border-color: #FFFFFF;
     color: #FFFFFF;
-    background-color: #121212;
+    background-color: #505050;
     box-shadow: 0 var(--twelveth-size) var(--twelveth-size) 0 rgba(187, 134, 252, 0.1);
 }
 
 *[theme="osnot-dark"] ui-stream-infos ui-avatar {
-    background-color: #121212;
+    background-color: #505050;
 }
 
 *[theme="osnot-dark"] ui-stream-infos ui-stream-info {
+    background-color: #505050;
     color: #FFFFFF;
 }
 
@@ -275,7 +280,11 @@
     fill: #FFFFFF;
 }
 
-*[theme="osnot-dark"] ui-stream-infos ui-stream-info[info="viewers"], ui-stream-infos ui-stream-info[info="username"] {
+*[theme="osnot-dark"] ui-stream-infos ui-stream-info[info="viewers"] {
+    background-color: #121212;
+    color: #FFFFFF;
+}
+*[theme="osnot-dark"] ui-stream-infos ui-stream-info[info="username"] {
     background-color: #121212;
     color: #FFFFFF;
 }
@@ -295,6 +304,41 @@
 }
 
 *[theme="osnot-dark"] ui-stream-infos ui-stream-info[info="edit"]:hover svg path {
+    fill: #121212;
+}
+
+/*
+ *   ui-stream-infos-lite, StreamInfoLite.js
+ */
+
+ui-stream-infos-lite {
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+    background-color: #505050;
+}
+
+ui-stream-infos-lite ui-avatar {
+    background-color: #121212;
+}
+
+ui-stream-infos-lite ui-stream-info {
+    color: #FFFFFF;
+}
+
+ui-stream-infos-lite ui-stream-info path {
+    fill: #FFFFFF;
+}
+
+ui-stream-infos-lite ui-stream-info[info="viewers"] {
+    background-color: #121212;
+    color: #FFFFFF;
+}
+ui-stream-infos-lite ui-stream-info[info="username"] {
+    background-color: #121212;
+    color: #FFFFFF;
+}
+
+ui-stream-infos-lite ui-stream-info[info="viewers"] path {
     fill: #FFFFFF;
 }
 

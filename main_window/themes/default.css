@@ -157,7 +157,11 @@ ui-audio-file ui-audio-icon[disabled] {
     background-color: var(--color-6);
 }
 
-ui-audio-file label svg path, ui-audio-file ui-audio-icon[svg="play"] svg path {
+ui-audio-file label svg path {
+    fill: var(--color-1);
+}
+
+ui-audio-file ui-audio-icon[svg="play"] svg path {
     fill: var(--color-1);
 }
 
@@ -400,7 +404,12 @@ ui-stream-infos ui-stream-info path {
     fill: var(--color-3);
 }
 
-ui-stream-infos ui-stream-info[info="viewers"], ui-stream-infos ui-stream-info[info="username"] {
+ui-stream-infos ui-stream-info[info="viewers"] {
+    background-color: var(--color-3);
+    color: var(--color-2);
+}
+
+ui-stream-infos ui-stream-info[info="username"] {
     background-color: var(--color-3);
     color: var(--color-2);
 }
@@ -420,6 +429,41 @@ ui-stream-infos ui-stream-info[info="edit"]:hover {
 }
 
 ui-stream-infos ui-stream-info[info="edit"]:hover svg path {
+    fill: var(--color-2);
+}
+
+/*
+ *   ui-stream-infos-lite, StreamInfoLite.js
+ */
+
+ui-stream-infos-lite {
+    border-color: var(--color-6);
+    color: #000;
+    background-color: var(--color-2);
+}
+
+ui-stream-infos-lite ui-avatar {
+    background-color: var(--color-2);
+}
+
+ui-stream-infos-lite ui-stream-info {
+    color: var(--color-9);
+}
+
+ui-stream-infos-lite ui-stream-info path {
+    fill: var(--color-3);
+}
+
+ui-stream-infos-lite ui-stream-info[info="viewers"] {
+    background-color: var(--color-3);
+    color: var(--color-2);
+}
+ui-stream-infos-lite ui-stream-info[info="username"] {
+    background-color: var(--color-3);
+    color: var(--color-2);
+}
+
+ui-stream-infos-lite ui-stream-info[info="viewers"] path {
     fill: var(--color-2);
 }
 

@@ -1,9 +1,2 @@
-scanner-server/
-server/
-compiler/
-node_modules/
-output/
 test/
 todo.txt
-package-lock.json
-background.channel
