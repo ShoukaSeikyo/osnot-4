@@ -96,6 +96,9 @@ const MainHeader = class extends Component {
                         ▶(magnify)
                     </ui-icon>
                 </ui-search-bar>
+                <ui-icon svg="list">
+                    ▶(list)
+                </ui-icon>
                 <ui-icon svg="gear">
                     ▶(gear)
                 </ui-icon>

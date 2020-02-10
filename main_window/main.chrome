@@ -22,6 +22,7 @@
     "shared/WebUI/Slider",
     "shared/WebUI/SnackBar",
     "shared/WebUI/StreamInfo",
+    "shared/WebUI/StreamInfoLite",
     "shared/WebUI/StreamList",
     "shared/WebUI/Stream",
     "shared/WebUI/Switch",
@@ -31,6 +32,7 @@
 
     "app/MainPage",
     "app/EditPage",
+    "app/FullInfoPage",
     "app/HelpPage",
     "app/SettingsPage",
     "app/StreamList",

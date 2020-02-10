@@ -10,9 +10,10 @@ const StreamList = class extends Component {
         return {
             'this': `
                 --per-row: 4;
+                --margin: var(--normal-size);
                 display: block;
                 padding: 0 0 var(--sixth-size) 0;
-                margin-top: var(--normal-size);
+                margin-top: var(--margin);
                 height: calc(var(--html-height) - var(--normal-size));
                 width: calc(var(--html-width) + 20px);
                 overflow-y: scroll;
@@ -20,8 +21,8 @@ const StreamList = class extends Component {
         };
     }
 
-    static baseHTML() {
-        return `<ui-stream-list></ui-stream-list>`;
+    static baseHTML({ margin = 'var(--normal-size)' }) {
+        return `<ui-stream-list style="--margin: ${margin};"></ui-stream-list>`;
     }
 };
 

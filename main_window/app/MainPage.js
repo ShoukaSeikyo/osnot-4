@@ -1,7 +1,7 @@
 //#ui-component-main-header as MainHeader, ui-component-context-menu as ContextMenu, ui-component-context-element as ContextElement, ui-component-context-checkbox as ContextCheckBox;
 //#ui-component-snackbar as SnackBar, ui-component-snackbar-text as SnackBarText, ui-component-snackbar-button as SnackBarButton, ui-component-stream as Stream;
 //#//ui-component-hide-overlay as HideOverlay;
-//#Channel, SETTINGSPAGE, HELPPAGE, THEMEPAGE;
+//#Channel, SETTINGSPAGE, HELPPAGE, THEMEPAGE, FULLINFOPAGE;
 
 let parameters, snackBar, usernameText, addButton, muteAll, mainHeader, settings, themes, help, snackBarTimeout = -1;
 
@@ -85,6 +85,9 @@ mainHeader
 .onEvent('ui-icon[svg="gear"]', 'click', ({ component, event }) => {
     parameters.updateData('position', {x: 100, y: 0, width: 1});
     parameters.updateData('visible', !parameters.getData('visible', false));
+})
+.onEvent('ui-icon[svg="list"]', 'click', () => {
+    FULLINFOPAGE.updateData('fetch', true);
 })
 .onData('search-value', ({ value }) => {
     if(value.length > 0) {

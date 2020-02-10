@@ -363,6 +363,22 @@ const Component = class {
     }
 
     /**
+     * Destroys all children.
+     *
+     * @param {Component} type type of the component to clear
+     * @returns {Component}
+     */
+    clear(type = false) {
+        this.childrenComponents.forEach(child => {
+            if(type === false || child instanceof type) {
+                child.destroy()
+            }
+        });
+        
+        return this;
+    }
+
+    /**
      * Setup an event handler for a change in data.
      *
      * @param {string} selector
