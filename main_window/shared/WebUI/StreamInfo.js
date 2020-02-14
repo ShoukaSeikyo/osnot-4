@@ -95,7 +95,7 @@ const StreamInfo = class extends Component {
                 margin-left: var(--eighth-size);
                 margin-right: 0;
             `,
-            
+
             'this ui-stream-info[info="edit"]': `
                 text-align: center;
                 width: calc(100% - var(--normal-2) - var(--eighth-size) - var(--third-size) - var(--sixth-size));
@@ -111,7 +111,7 @@ const StreamInfo = class extends Component {
                 display: block;
                 transition: top 0.3s;
             `
-            
+
         };
     }
 
@@ -124,7 +124,7 @@ const StreamInfo = class extends Component {
                     <ui-stream-info info="viewers">▶(users)</ui-stream-info>
                     <ui-stream-info hideable info="title">▶(title)</ui-stream-info>
                     <ui-stream-info hideable info="game">▶(gamepad)</ui-stream-info>
-                    <ui-stream-info info="edit">▶(pencil)${ edit }</ui-stream-info>
+                    <ui-stream-info info="edit">▶(pencil)${ edit}</ui-stream-info>
                 </ui-stream-infos>
             </ui-stream-info-space>
         `;
@@ -140,12 +140,12 @@ const StreamInfo = class extends Component {
             this.setData('fullID', fullID);
             this.element.querySelector('ui-avatar').setAttribute('fullid', fullID);
             this.element.querySelectorAll('ui-stream-info:not([info="edit"])').forEach(e => {
-                if(e.hasAttribute('hideable')) {
+                if (e.hasAttribute('hideable')) {
                     this.setAttribute(e, 'empty', true);
                 }
 
                 e.childNodes.forEach(c => {
-                    if(c.nodeType === 3) {
+                    if (c.nodeType === 3) {
                         c.remove();
                     }
                 })
@@ -157,13 +157,13 @@ const StreamInfo = class extends Component {
 
             this.element.querySelectorAll('ui-stream-info[info="title"]').forEach(e => {
                 e.insertAdjacentText('beforeend', cache.title);
-                if(cache.title.length > 0) {
+                if (cache.title.length > 0) {
                     this.setAttribute(e, 'empty', false);
                 }
             });
             this.element.querySelectorAll('ui-stream-info[info="game"]').forEach(e => {
                 e.insertAdjacentText('beforeend', cache.game);
-                if(cache.game.length > 0) {
+                if (cache.game.length > 0) {
                     this.setAttribute(e, 'empty', false);
                 }
             });
@@ -176,7 +176,8 @@ const StreamInfo = class extends Component {
         });
 
         this.onEvent('click', ({ domEvent }) => {
-            if (domEvent.path[0] === this.element) {
+            const path = domEvent.path || (domEvent.composedPath && domEvent.composedPath());
+            if (path[0] === this.element) {
                 this.element.removeAttribute('visible');
                 this.removeData('stream');
             }
