@@ -1,43 +1,18 @@
-//#Channel;
-//#ui-component-page as Page, ui-component-page-header as PageHeader, ui-component-title-section as TitleSection, ui-component-information as Information;
+//#Channel,
+//ui-component-page as Page,
+//ui-component-page-header as PageHeader,
+//ui-component-title-section as TitleSection,
+//ui-component-information as Information;
 
-/////////////////////
-// COMPONENT SETUP //
-/////////////////////
+const { version } = await Channel.get('browser').dispatch('infos');
 
-const BrowserInfo = await Channel.get('browser').dispatch('infos');
-
-const helpPage = new Page()
-    .setProperty('name', 'help-page')
-.add(new PageHeader()
-    .setProperty('pageTitle', /*τ(HELP,{ })*/))
-.add(new TitleSection()
-    .setProperty('text', /*τ(INFORMATIONS,{ })*/))
-.add(new Information()
-    .setProperty('text', BrowserInfo.version)
-    .setProperty('icon', `▶(help-circle)`)
-    .setProperty('title', /*τ(VERSION,{ })*/))
-.add(new Information()
-    .setProperty('text', 'https://github.com/ShoukaSeikyo/osnot-4')
-    .setProperty('icon', `▶(github)`)
-    .setProperty('title', 'GitHub'))
-.add(new TitleSection()
-    .setProperty('text', /*τ(CONTACT,{ })*/))
-.add(new Information()
-    .setProperty('text', 'contact@shoukaseikyo.fr')
-    .setProperty('icon', `▶(at)`)
-    .setProperty('title', /*τ(EMAIL,{ })*/))
-.add(new Information()
-    .setProperty('text', '@ShoukaSeikyo')
-    .setProperty('icon', `▶(twitter)`)
-    .setProperty('title', /*τ(TWITTER,{ })*/))
-
-//////////////////////
-// COMPONENT APPEND //
-//////////////////////
-//at
-//twitter
-
-helpPage.append();
-
-App.register('HELPPAGE', helpPage);
+new Page({ name: 'help-page' })
+    .add(new PageHeader({ pageTitle: '/*τ(HELP,{ })*/' }))
+    .add(new TitleSection({ text: '/*τ(INFORMATIONS,{ })*/' }))
+    .add(new Information({ text: version, icon: `▶(help-circle)`, title: '/*τ(VERSION,{ })*/' }))
+    .add(new Information({ text: 'https://github.com/ShoukaSeikyo/osnot-4', icon: `▶(github)`, title: 'GitHub' }))
+    .add(new TitleSection({ text: '/*τ(CONTACT,{ })*/' }))
+    .add(new Information({ text: 'contact@shoukaseikyo.fr', icon: `▶(at)`, title: '/*τ(EMAIL,{ })*/' }))
+    .add(new Information({ text: '@ShoukaSeikyo', icon: `▶(twitter)`, title: '/*τ(TWITTER,{ })*/' }))
+    .append()
+    .register('HELPPAGE');

@@ -89,7 +89,7 @@ const AudioFile = class extends Component {
                 height: var(--third-size);
                 margin: var(--twelveth-size);
             `,
-            
+
             'this label:hover, this ui-audio-icon:not([disabled]):hover': `cursor: pointer;`,
 
             'this:not([playing]) ui-audio-icon[svg="play"] path:nth-of-type(2), this[playing] ui-audio-icon[svg="play"] path:nth-of-type(1)': `display: none;`
@@ -102,29 +102,22 @@ const AudioFile = class extends Component {
                 <ui-text>${ text}</ui-text>
                 <ui-audio-icon svg="volume-high">▶(volume-high)</ui-audio-icon>
                 <input ${ disabled ? 'disabled' : ''} type="range" min="0" max="1" step="0.01" value="1" style="--range-value: 1;">
-                <input id="audio-file-${ name }" type="file" accept="audio/*">
-                <label for="audio-file-${ name }" svg="paperclip">▶(paperclip)</label>
+                <input id="audio-file-${ name}" type="file" accept="audio/*">
+                <label for="audio-file-${ name}" svg="paperclip">▶(paperclip)</label>
                 <ui-audio-icon ${ disabled ? 'disabled' : ''} svg="play">▶(play)</ui-audio-icon>
             </ui-audio-file>
         `;
     };
 
-    constructor() {
-        super();
-        
-        this.setProperty('disableOnEmpty', false);
-        this.setProperty('isDefault', false);
+    constructor(props) {
+        super(props);
 
         this.testAudio = false;
         this.testTimeoutID = -1;
         this.reader = new FileReader();
-        this.reader.addEventListener('load', domEvent => {
-            this.updateData('base64', domEvent.target.result);
-        });
+        this.reader.addEventListener('load', domEvent => this.updateData('base64', domEvent.target.result));
 
-        this.onEvent('input[type="range"]', 'input', ({ target }) => {
-            this.updateData('volume', parseFloat(target.value));
-        });
+        this.onEvent('input[type="range"]', 'input', ({ target }) => this.updateData('volume', parseFloat(target.value)));
 
         this.onEvent('ui-audio-icon[svg="play"]', 'click', async ({ handlerTarget }) => {
             if (!handlerTarget.hasAttribute('disabled')) {
@@ -134,7 +127,7 @@ const AudioFile = class extends Component {
 
         this.onEvent('input[type="file"]', 'change', ({ target }) => {
             if (target.files.length < 1) {
-                if (this.getProperty('disableOnEmpty') === true) {
+                if (this.getProperty('disableOnEmpty', false) === true) {
                     this.updateData('disabled', true)
                 }
                 return;
@@ -159,7 +152,7 @@ const AudioFile = class extends Component {
                 return;
             }
 
-            if(this.getData('id', null) !== null) {
+            if (this.getData('id', null) !== null) {
                 this.updateData('playID', this.getData('id'));
                 this.removeData('playID');
                 return;
@@ -201,7 +194,7 @@ const AudioFile = class extends Component {
         });
 
         this.onData('audio', ({ value: { id, volume } }) => {
-            if(typeof id !== 'undefined' && (this.getProperty('isDefault') || id !== 'default')) {
+            if (typeof id !== 'undefined' && (this.getProperty('isDefault', false) || id !== 'default')) {
                 this.setData('id', id);
                 this.updateData('volume', volume);
                 this.updateData('disabled', false);

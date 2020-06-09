@@ -38,12 +38,12 @@ const Information = class extends Component {
         };
     }
 
-    static baseHTML({ icon = '', title = '', text = ''}) {
+    static baseHTML({ icon = '', title = '', text = '' }) {
         return `
             <ui-information>
-                <ui-icon>${icon}</ui-icon>
-                <ui-text>${title}</ui-text>
-                <ui-text>${text}</ui-text>
+                <ui-icon>${ icon}</ui-icon>
+                <ui-text>${ title}</ui-text>
+                <ui-text>${ text}</ui-text>
             </ui-information>
         `;
     }

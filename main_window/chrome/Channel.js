@@ -30,8 +30,8 @@ const ChannelChrome = class extends Channel {
     }
 
     static get(name) {
-        if(!Channel.has(name)) {
-          return new ChannelChrome(name);
+        if (!Channel.has(name)) {
+            return new ChannelChrome(name);
         }
 
         return Channel.get(name);

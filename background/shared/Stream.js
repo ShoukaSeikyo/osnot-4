@@ -1,4 +1,12 @@
-//#Storage, Browser, Badge, Throttle, Channel, AudioWrapper, StreamNotification, ImageCache;
+//#Storage,
+//Browser,
+//Badge,
+//Throttle,
+//Channel,
+//AudioWrapper,
+//StreamNotification,
+//ImageCache,
+//Settings;
 
 const badgeThrottle = new Throttle().setMode(Throttle.MODE.LAST).setCallback(() => {
     const count = StreamList.filter(stream => stream.cache.online).length;
@@ -50,7 +58,7 @@ const Stream = class {
             game: "",
             viewers: 0,
             online: false,
-            notify: 7
+            notify: Settings.getValue('notify', 7)
         };
 
         StreamList.push(this);
@@ -67,7 +75,7 @@ const Stream = class {
         for (let key in object) {
             if (this.cache.hasOwnProperty(key) && this.cache[key] !== object[key] && (typeof this.cache[key] === typeof object[key])) {
                 this.cache[key] = object[key];
-                
+
                 if (key === 'online' && this.cache['online'] === true) {
                     notify = true;
                 }
@@ -112,14 +120,14 @@ const Stream = class {
     }
 
     dispatch(data) {
-        if(typeof data === 'undefined' || Object.keys(data).length > 0) {
+        if (typeof data === 'undefined' || Object.keys(data).length > 0) {
             Channel.get('stream').dispatch(this.fullID, data);
         }
         return this;
     }
 
     notify() {
-        if(GLOBAL_MUTE || (this.cooldown > new Date().getTime())) {
+        if (GLOBAL_MUTE || (this.cooldown > new Date().getTime())) {
             return;
         }
 
@@ -196,7 +204,7 @@ const streamStorage = Storage.get('stream', [
         }
     }
 ]);
-for(let i in streamStorage) {
+for (let i in streamStorage) {
     const { fullID, cache } = streamStorage[i];
     new Stream(fullID).setCache(cache, false);
 }

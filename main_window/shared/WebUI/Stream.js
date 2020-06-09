@@ -41,6 +41,9 @@ const Stream = class extends Component {
                 background-image: var(--avatar), url("/static/blank.png");
                 margin-top: calc(-1 * var(--width));
             `,
+            'body[fullmode=true] this[online]': `
+                display: none;
+            `,
             'this:not([online]):hover ui-avatar, this:hover ui-avatar': `
                 filter: grayscale(0%);
                 opacity: 1;
@@ -76,18 +79,18 @@ const Stream = class extends Component {
         };
     }
 
-    static baseHTML({fullID, online, avatar}) {
+    static baseHTML({ fullID, online, avatar }) {
         avatarSheet.addRule(`[fullid="${fullID}"] { --avatar: url(${avatar}); }`);
         return `
-            <ui-stream fullid="${fullID}" ${online ? 'online' : ''}>
-                <favicon service="${fullID.slice(-2)}"></favicon>
+            <ui-stream fullid="${ fullID}" ${online ? 'online' : ''}>
+                <favicon service="${ fullID.slice(-2)}"></favicon>
                 <ui-avatar></ui-avatar>
             </ui-stream>
         `;
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.onData('online', ({ value }) => this.setAttribute('online', value));
 
@@ -110,17 +113,18 @@ const Stream = class extends Component {
     reorganize() {
         const streamList = this.parent;
         const streams = Array.from(streamList.childrenComponents)
-        .filter(streamB => streamB instanceof Stream && streamB !== this && streamB.getData('online', false) === this.getData('online', false));
+            .filter(streamB => streamB instanceof Stream && streamB !== this && streamB.getData('online', false) === this.getData('online', false));
 
         for (let i = 0; i < streams.length; i++) {
-            let cU = streams[i].getProperty('username').toLowerCase(),
-                aU = this.getProperty('username').toLowerCase(),
-                cI = streams[i].getProperty('uniqueid'),
-                aI = this.getProperty('uniqueID');
+            let currentUsername = streams[i].getProperty('username').toLowerCase(),
+                refUsername = this.getProperty('username').toLowerCase(),
+                currentUserID = streams[i].getProperty('uniqueid'),
+                redUserID = this.getProperty('uniqueID');
 
             // if the stream has an inferior username to the current stream in the list OR if the stream has an inferior uniqueID if the usernames are the same.
             // these values should never ever happen to be equal. If they do, something really wrong is happenning.
-            if (cU > aU || (cU === aU && cI > aI)) {
+            // Two users on a single platform cannot have the same identifier as one other.
+            if (currentUsername > refUsername || (currentUsername === refUsername && currentUserID > redUserID)) {
                 return streams[i].element.insertAdjacentElement('beforebegin', this.element);
             }
         }

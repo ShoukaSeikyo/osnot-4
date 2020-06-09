@@ -245,6 +245,23 @@ ui-information ui-text:nth-of-type(2) {
 }
 
 /*
+ *   ui-large-button, LargeButton.js
+ */
+
+ui-large-button {
+    color: var(--color-2);
+    background-color: var(--color-6);
+}
+
+ui-large-button:hover {
+    background-color: var(--color-1);
+}
+
+ui-large-button svg path {
+    fill: var(--color-2);
+}
+
+/*
  *   ui-main-header, MainHeader.js
  */
 
@@ -323,13 +340,14 @@ ui-scrollbar {
  *   ui-audio-file, AudioFile.js
  */
 
- ui-slider input[type="range"]::-webkit-slider-thumb {
+ui-slider input[type="range"]::-webkit-slider-thumb {
     background-color: var(--color-3);
 }
 
 ui-slider input[type="range"]:disabled::-webkit-slider-thumb {
     background-color: var(--color-6);
 }
+
 ui-slider ui-slider-icon svg path {
     fill: var(--color-6);
 }
@@ -380,6 +398,42 @@ ui-stream {
 
 ui-stream favicon {
     background-color: var(--color-2);
+}
+
+/*
+ *   ui-stream-full, StreamFull.js
+ */
+
+ui-stream-full {
+    border-color: var(--color-6);
+    color: #000;
+    background-color: var(--color-2);
+}
+
+ui-stream-full ui-avatar {
+    background-color: var(--color-2);
+}
+
+ui-stream-full ui-stream-info {
+    color: var(--color-9);
+}
+
+ui-stream-full ui-stream-info path {
+    fill: var(--color-3);
+}
+
+ui-stream-full ui-stream-info[info="viewers"] {
+    background-color: var(--color-3);
+    color: var(--color-2);
+}
+
+ui-stream-full ui-stream-info[info="username"] {
+    background-color: var(--color-3);
+    color: var(--color-2);
+}
+
+ui-stream-full ui-stream-info[info="viewers"] path {
+    fill: var(--color-2);
 }
 
 /*
@@ -458,6 +512,7 @@ ui-stream-infos-lite ui-stream-info[info="viewers"] {
     background-color: var(--color-3);
     color: var(--color-2);
 }
+
 ui-stream-infos-lite ui-stream-info[info="username"] {
     background-color: var(--color-3);
     color: var(--color-2);

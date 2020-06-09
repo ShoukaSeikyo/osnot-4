@@ -1,4 +1,6 @@
-//#Stream, Throttle, Settings;
+//#Stream,
+//Throttle,
+//Settings;
 
 const ServerPool = class {
 
@@ -16,11 +18,11 @@ const ServerPool = class {
     }
 
     add(stream) {
-        if(this.size < 20) {
+        if (this.size < 20) {
             this.streams.add(stream);
             this.restart();
         }
-        
+
         return this;
     }
 
@@ -29,7 +31,7 @@ const ServerPool = class {
     }
 
     remove(stream) {
-        if(this.has(stream)) {
+        if (this.has(stream)) {
             this.streams.delete(stream);
             this.restart();
         }
@@ -45,19 +47,16 @@ const ServerPool = class {
         this.kill();
         this.eventSource = new EventSource(`${Server.URL}/stream/?id[]=${this.onlyID.join('&id[]=')}`);
 
-        this.eventSource.addEventListener('message', ({data}) => {
+        this.eventSource.addEventListener('message', ({ data }) => {
             const { fullID, cache } = JSON.parse(data);
             Stream.getByID(fullID).setCache(cache);
         });
-        
-        // this.eventSource.addEventListener('connected', (event) => {});
-        // this.eventSource.addEventListener('open', () => {});
 
         this.eventSource.addEventListener('error', event => this.restart());
     }
 
     kill() {
-        if(this.isAlive) {
+        if (this.isAlive) {
             this.eventSource.close();
             this.eventSource = null;
         }
@@ -84,7 +83,7 @@ const Server = class {
 
     constructor() {
         this.pools = [];
-        for(let i = 0; i < MaximumPools; i++) {
+        for (let i = 0; i < MaximumPools; i++) {
             this.pools.push(new ServerPool());
         }
     }

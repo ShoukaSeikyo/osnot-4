@@ -36,16 +36,13 @@ const Page = class extends Component {
 
     static baseHTML({ name = '' }) {
         return `
-            <ui-page name="${name}"></ui-page>
+            <ui-page name="${ name}"></ui-page>
         `;
     }
 
-    constructor() {
-        super();
-
-        this.onData('visible', ({ value }) => {
-            this.setAttribute('visible', value);
-        });
+    constructor(props) {
+        super(props);
+        this.onData('visible', ({ value }) => this.setAttribute('visible', value));
     }
 
 };

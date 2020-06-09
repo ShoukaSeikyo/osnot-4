@@ -13,13 +13,13 @@ const Paragraph = class extends Component {
                 width: calc(var(--html-width) - var(--normal-half));
                 height: var(--normal-size);
                 margin: 0 var(--half-size);
-                padding: var(--quarter-size);
+                padding: 0 var(--quarter-size);
                 font-size: var(--quarter-size);
             `
         };
     }
 
-    static baseHTML({ text = ''}) {
+    static baseHTML({ text = '' }) {
         return `
             <ui-paragraph>
                 ${text.replace(/\r?\n|\r/g, '<br>')}

@@ -1,20 +1,22 @@
 //#Component;
 
-const StreamInfoLite = class extends Component {
+const StreamFull = class extends Component {
 
     static get name() {
-        return 'stream-infos-lite';
+        return 'stream-full';
     }
 
     static get rules() {
         return {
             "this": `
                 display: block;
-                width: calc(var(--html-width) - var(--half-size));
+                width: var(--html-width);
                 height: var(--normal-half);
-                margin: 0 var(--quarter-size);
-                margin-top: var(--twelveth-size);
+                margin: 0 0;
                 vertical-align: top;
+            `,
+            'body:not([fullmode=true]) this': `
+                display: none;
             `,
             'this:hover': `cursor: pointer;`,
             "this ui-avatar": `
@@ -76,13 +78,13 @@ const StreamInfoLite = class extends Component {
 
     static baseHTML({ edit = 'Place Holder' }) {
         return `
-            <ui-stream-infos-lite>
+            <ui-stream-full>
                 <ui-avatar></ui-avatar>
                 <ui-stream-info info="username"></ui-stream-info>
                 <ui-stream-info info="viewers">▶(users)</ui-stream-info>
                 <ui-stream-info hideable info="title">▶(title)</ui-stream-info>
                 <ui-stream-info hideable info="game">▶(gamepad)</ui-stream-info>
-            </ui-stream-infos-lite>
+            </ui-stream-full>
         `;
     }
 
@@ -101,20 +103,42 @@ const StreamInfoLite = class extends Component {
 
             this.element.querySelectorAll('ui-stream-info[info="title"]').forEach(e => {
                 e.insertAdjacentText('beforeend', cache.title);
-                if (cache.title.length > 0) {
-                    this.setAttribute(e, 'empty', false);
-                }
+                this.setAttribute(e, 'empty', cache.title.length == 0);
             });
 
             this.element.querySelectorAll('ui-stream-info[info="game"]').forEach(e => {
                 e.insertAdjacentText('beforeend', cache.game);
-                if (cache.game.length > 0) {
-                    this.setAttribute(e, 'empty', false);
-                }
+                this.setAttribute(e, 'empty', cache.game.length == 0);
             });
         });
     }
+
+    reorganize() {
+        const streamList = this.parent;
+        const streams = Array.from(streamList.childrenComponents)
+            .filter(streamB => streamB instanceof StreamFull && streamB !== this);
+
+        for (let i = 0; i < streams.length; i++) {
+            let currentUsername = streams[i].getProperty('username').toLowerCase(),
+                refUsername = this.getProperty('username').toLowerCase(),
+                currentUserID = streams[i].getProperty('uniqueid'),
+                redUserID = this.getProperty('uniqueID');
+
+            // if the stream has an inferior username to the current stream in the list OR if the stream has an inferior uniqueID if the usernames are the same.
+            // these values should never ever happen to be equal. If they do, something really wrong is happenning.
+            // Two users on a single platform cannot have the same identifier.
+            if (currentUsername > refUsername || (currentUsername === refUsername && currentUserID > redUserID)) {
+                return streams[i].element.insertAdjacentElement('beforebegin', this.element);
+            }
+        }
+
+        if (streams.length > 0) {
+            streams[streams.length - 1].element.insertAdjacentElement('beforebegin', this.element);
+        } else {
+            streamList.element.insertAdjacentElement('afterbegin', this.element);
+        }
+    }
 }
 
-Component.register(StreamInfoLite);
-App.register('ui-component-stream-infos-lite', StreamInfoLite);
+Component.register(StreamFull);
+App.register('ui-component-stream-full', StreamFull);

@@ -130,8 +130,8 @@ const StreamInfo = class extends Component {
         `;
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.addElement = 'ui-stream-info';
 
         this.onData('stream', ({ value }) => {

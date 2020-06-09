@@ -42,21 +42,16 @@ const PageHeader = class extends Component {
                 <ui-icon svg="arrow-left">
                     ▶(arrow-left)
                 </ui-icon>
-                <ui-title>${pageTitle}</ui-page-title>
+                <ui-title>${ pageTitle}</ui-page-title>
             </ui-page-header>
         `;
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
-        this.onEvent('ui-icon[svg="arrow-left"]', 'click', ({ component }) => {
-            component.parent.updateData('visible', false);
-        });
-
-        this.onData('ui-title', 'pageTitle', ({ element, value }) => {
-            element.innerText = value;
-        });
+        this.onEvent('ui-icon[svg="arrow-left"]', 'click', ({ component }) => component.parent.updateData('visible', false));
+        this.onData('ui-title', 'pageTitle', ({ element, value }) => element.innerText = value);
     }
 }
 

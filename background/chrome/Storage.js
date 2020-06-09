@@ -1,11 +1,12 @@
-//#Throttle, StorageBase as Storage;
+//#Throttle,
+//StorageBase as Storage;
 
 const ChromeStorage = class extends Storage {
     constructor(mainNode = {}) {
         super(mainNode);
 
         this.saveThrottle = new Throttle().setMode(Throttle.MODE.LAST).setCallback(async () => {
-            chrome.storage.local.set({'v4': this.mainNode.toStorage});
+            chrome.storage.local.set({ 'v4': this.mainNode.toStorage });
         });
     }
 

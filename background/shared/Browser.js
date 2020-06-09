@@ -11,17 +11,17 @@ const Browser = class {
     get lang() { return 'en'; }
 
     text(text, keyVars = {}) {
-        for(let keyVar in keyVars) {
+        for (let keyVar in keyVars) {
             text = text.replace(new RegExp(`{${keyVar}}`, 'gi'), keyVars[keyVar]);
         }
         return text;
     }
 
-    popup(url) {}
+    popup(url) { }
 
     open(url) { }
 
-    closeTab() {}
+    closeTab() { }
 
     get version() { return ''; }
 };
@@ -43,7 +43,7 @@ Channel.get('browser')
         return true;
     })
     .subscribe('text', async ({ keys = null, key = '', keyVars = {} }) => {
-        if(Array.isArray(keys)) {
+        if (Array.isArray(keys)) {
             const texts = {};
             keys.forEach(_key => texts[_key] = INSTANCE.text(_key));
             return keys;

@@ -22,9 +22,7 @@ const Icon = class extends Component {
 
     static baseHTML({ svg = '' }) {
         return `
-            <ui-icon>
-                ${svg}
-            </ui-icon>
+            <ui-icon>${ svg}</ui-icon>
         `;
     }
 };

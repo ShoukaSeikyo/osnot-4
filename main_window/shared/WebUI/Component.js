@@ -98,7 +98,7 @@ const Component = class {
 
             elements.forEach(element => {
                 let evtHandler = evt => {
-                    eventHandler.handler({ component: component, handlerTarget: element, target: evt.target, domEvent: evt })
+                    eventHandler.handler({ component: component, children: component.childrenRegistry, root: component.root, handlerTarget: element, target: evt.target, domEvent: evt })
                     evt.stopPropagation();
                 };
                 eventHandler.eventNames.forEach(evtName => element.addEventListener(evtName, evtHandler));
@@ -109,9 +109,10 @@ const Component = class {
         return component;
     }
 
-    constructor() {
+    constructor(props = {}) {
         this.parentComponent = false;
         this.childrenComponents = new Set();
+        this.childrenRegistry = {};
         this.element = false;
         this.addElement = false;
 
@@ -119,6 +120,33 @@ const Component = class {
         this.dataHandlers = [];
         this.dataRegistry = {};
         this.eventHandlers = [];
+
+        for (let propName in props) {
+            this.setProperty(propName, props[propName]);
+        }
+    }
+
+    /**
+     * Returns the root parent Component
+     *
+     * @returns {Component}
+     */
+    get root() {
+        if (this.hasParent) {
+            return this.parent.root;
+        }
+
+        return this;
+    }
+
+
+    /**
+     * Returns the childrenRegistry
+     *
+     * @returns {ObjectMap}
+     */
+    get children() {
+        return this.childrenRegistry;
     }
 
     /**
@@ -155,10 +183,18 @@ const Component = class {
      * Adds a children Component.
      *
      * @param {Component} component
+     * @param {String} name if set, it will be passed through as the children object in onEvent and onData.
      * @returns {Component}
      */
-    add(component) {
+    add(component, name = false) {
+        if (typeof component === 'string') {
+            return this.add(name, component);
+        }
+
         component.parent = this;
+        if (name !== false) {
+            this.childrenRegistry[name] = component;
+        }
         return this;
     }
 
@@ -297,7 +333,7 @@ const Component = class {
      * @returns {Component}
      */
     create(pos, addElement = false) {
-        if(this.element !== false) {
+        if (this.element !== false) {
             return this;
         }
 
@@ -354,7 +390,7 @@ const Component = class {
      */
     destroy() {
         this.parentComponent.childrenComponents.delete(this);
-        if(this.element !== false) {
+        if (this.element !== false) {
             this.element.remove();
             this.element = false;
         }
@@ -370,11 +406,11 @@ const Component = class {
      */
     clear(type = false) {
         this.childrenComponents.forEach(child => {
-            if(type === false || child instanceof type) {
+            if (type === false || child instanceof type) {
                 child.destroy()
             }
         });
-        
+
         return this;
     }
 
@@ -383,7 +419,7 @@ const Component = class {
      *
      * @param {string} selector
      * @param {string} name
-     * @param {function} handler({ element, value })
+     * @param {function} handler({ element, value, component, children, root })
      * @returns {Component}
      */
     onData(selector, name, handler) {
@@ -401,6 +437,9 @@ const Component = class {
                     selected = this.element.querySelectorAll(selector);
                 }
                 selected.forEach(element => handler({
+                    component: this,
+                    root: this.root,
+                    children: this.childrenRegistry,
                     element: element,
                     value: value
                 }));
@@ -415,7 +454,7 @@ const Component = class {
      *
      * @param {string} selector
      * @param {Array|string} eventNames
-     * @param {function} handler({ component, handlerTarget, target, domEvent })
+     * @param {function} handler({ component, handlerTarget, target, domEvent, children, root })
      * @returns {Component}
      */
     onEvent(selector, eventNames, handler) {
@@ -429,6 +468,29 @@ const Component = class {
             handler: handler
         });
 
+        return this;
+    }
+
+    /**
+     * Registers the Component instance to the App instance.
+     * @param {string} name registry name
+     * @returns {Component}
+     */
+    register(name = false) {
+        if (typeof name === 'string' && name.length > 0) {
+            App.register(name, this);
+        }
+
+        return this;
+    }
+
+    /**
+     * Callback containing this component for method chaining.
+     * @param {function} callback
+     * @returns {Component}
+     */
+    context(callback) {
+        callback(this);
         return this;
     }
 };

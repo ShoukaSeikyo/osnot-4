@@ -1,11 +1,12 @@
-//#BadgeBase as Badge;
+//#BadgeBase as Badge,
+//Settings;
 const ChromeBadge = class extends Badge {
 
     constructor() {
         super();
         this.color('#B44F00');
         // this.icon('#800080');
-        this.icon('#4BB0FF');
+        this.icon(Settings.getValue('icon-color'));
     }
 
     color(value) {

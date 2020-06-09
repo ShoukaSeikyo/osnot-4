@@ -5,7 +5,7 @@ const StreamList = class extends Component {
     static get name() {
         return 'stream-list';
     }
-    
+
     static get rules() {
         return {
             'this': `
@@ -21,8 +21,8 @@ const StreamList = class extends Component {
         };
     }
 
-    static baseHTML({ margin = 'var(--normal-size)' }) {
-        return `<ui-stream-list style="--margin: ${margin};"></ui-stream-list>`;
+    static baseHTML({ margin = 'var(--normal-size)', perrow = 4 }) {
+        return `<ui-stream-list style="--margin: ${margin}; --per-row: ${perrow};"></ui-stream-list>`;
     }
 };
 

@@ -44,7 +44,7 @@ const ScrollBar = class extends Component {
         const delta = y - this.y;
         this.y = y;
         const { scrollHeight, clientHeight } = this.parent.element;
-  
+
         requestAnimationFrame(() => this.parent.element.scrollTop += (delta / (clientHeight / scrollHeight)));
     }
 
@@ -53,22 +53,18 @@ const ScrollBar = class extends Component {
         document.removeEventListener('mouseup', this.stopListener);
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.y;
         this.dragListener;
         this.stopListener;
 
-        this.onEvent('mousedown', ({ domEvent: { pageY: y }}) => {
+        this.onEvent('mousedown', ({ domEvent: { pageY: y } }) => {
             this.y = y;
 
-            document.addEventListener('mousemove', this.dragListener = ({ pageY: y }) => {
-                this.onDrag(y);
-            });
-            document.addEventListener('mouseup', this.stopListener = () => {
-                this.stop();
-            });
+            document.addEventListener('mousemove', this.dragListener = ({ pageY: y }) => this.onDrag(y));
+            document.addEventListener('mouseup', this.stopListener = () => this.stop());
         });
 
         this.scrollHeight;
@@ -76,30 +72,27 @@ const ScrollBar = class extends Component {
         this.scrollTop;
     }
 
-    
+
     create(pos, addElement = false) {
         super.create(pos, addElement);
-
-        this.parent.onEvent(['scroll', 'mouseenter'], () => {
-            this.update();
-        });
+        this.parent.onEvent(['scroll', 'mouseenter'], () => this.update());
     }
 
     update() {
-        if(!this.hasElement || !this.hasParent || !this.parent.hasElement) {
+        if (!this.hasElement || !this.hasParent || !this.parent.hasElement) {
             return;
         }
-        
+
         // requestAnimationFrame(() => { this.update() });
 
-        if(this.newScrollTop !== false) {
+        if (this.newScrollTop !== false) {
             this.parent.element.scrollTop = this.newScrollTop;
             this.newScrollTop = false;
         }
 
         const yOffset = this.parent.element.getBoundingClientRect().y;
         const { scrollHeight, clientHeight, scrollTop } = this.parent.element;
-        if(scrollHeight === this.scrollHeight && clientHeight === this.clientHeight && scrollTop === this.scrollTop) {
+        if (scrollHeight === this.scrollHeight && clientHeight === this.clientHeight && scrollTop === this.scrollTop) {
             return;
         }
 
@@ -107,16 +100,14 @@ const ScrollBar = class extends Component {
         this.clientHeight = clientHeight;
         this.scrollTop = scrollTop;
 
-        if(scrollHeight <= clientHeight) {
-            this.element.style = `
-                display: none;
-            `;
+        if (scrollHeight <= clientHeight) {
+            this.element.style = `display: none;`;
         } else {
             this.element.style = `
-                --y-offset: ${yOffset};
-                --scroll-height: ${scrollHeight};
-                --height: ${clientHeight};
-                --progress: ${ scrollTop / (scrollHeight - clientHeight) };
+                --y-offset: ${ yOffset};
+                --scroll-height: ${ scrollHeight};
+                --height: ${ clientHeight};
+                --progress: ${ scrollTop / (scrollHeight - clientHeight)};
             `;
         }
     }

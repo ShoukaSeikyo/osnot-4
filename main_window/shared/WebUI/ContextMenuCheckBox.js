@@ -14,11 +14,11 @@ const ContextMenuCheckBox = class extends ContextElement {
         };
     }
 
-    static baseHTML({separator = false, icon = '', text = 'Place Holder', checked = false }) {
+    static baseHTML({ separator = false, icon = '', text = 'Place Holder', checked = false }) {
         return `
-            <ui-context-element ${separator === true ? 'separator' : ''} ${ checked === true ? 'checked' : ''}>
-                <ui-context-icon>${icon}</ui-context-icon>
-                <ui-text>${text}</ui-text>
+            <ui-context-element ${ separator === true ? 'separator' : ''} ${checked === true ? 'checked' : ''}>
+                <ui-context-icon>${ icon}</ui-context-icon>
+                <ui-text>${ text}</ui-text>
                 <ui-context-icon checkbox>
                     ▶(checkbox)
                 </ui-context-icon>
@@ -26,18 +26,13 @@ const ContextMenuCheckBox = class extends ContextElement {
         `;
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
-        this.onEvent('click', ({ component }) => {
-            component.updateData('checked', !this.element.hasAttribute('checked'));
-        });
-
-        this.onData('checked', ({ value }) => {
-            this.setAttribute('checked', value);
-        });
+        this.onEvent('click', ({ component }) => component.updateData('checked', !this.element.hasAttribute('checked')));
+        this.onData('checked', ({ value }) => this.setAttribute('checked', value));
     }
 };
-  
+
 Component.register(ContextMenuCheckBox);
 App.register('ui-component-context-checkbox', ContextMenuCheckBox);

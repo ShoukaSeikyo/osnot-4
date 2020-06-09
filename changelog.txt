@@ -1,0 +1,5 @@
+> 4.0.4
+    - Added a changelog file. ( lul )
+    - Fixed dark theme fade-in color.
+    - Added page to add through URLs.
+    - Reworked lot of code.

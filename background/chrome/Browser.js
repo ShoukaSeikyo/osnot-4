@@ -1,4 +1,5 @@
-//#BrowserBase as Browser, ImageCache;
+//#BrowserBase as Browser,
+//ImageCache;
 
 const ChromeBrowser = class extends Browser {
     constructor() {
@@ -18,12 +19,12 @@ const ChromeBrowser = class extends Browser {
     }
 
     popup(url) {
-        
+
     }
 
     closeTab() {
         chrome.tabs.query({ active: true, currentWindow: true, windowId: chrome.windows.WINDOW_ID_CURRENT }, async tabs => {
-            for(let i in tabs) {
+            for (let i in tabs) {
                 chrome.tabs.remove(tabs[i].id, () => { });
             }
         });

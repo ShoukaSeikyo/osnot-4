@@ -5,7 +5,7 @@ const Channel = class {
   }
 
   static get(name) {
-    if(!Channel.has(name)) {
+    if (!Channel.has(name)) {
       return new Channel(name);
     }
 
@@ -24,24 +24,24 @@ const Channel = class {
   }
 
   subscribe(mode, subscriber) {
-      this.subscribers.push({
-          mode: mode,
-          subscriber: subscriber
-      });
+    this.subscribers.push({
+      mode: mode,
+      subscriber: subscriber
+    });
 
-      return this;
+    return this;
   }
 
   async notify(_mode, data) {
-      for (let i = 0; i < this.subscribers.length; i++) {
-          const { mode, subscriber } = this.subscribers[i];
-          if (mode === _mode) {
-              return await subscriber(data);
-          }
+    for (let i = 0; i < this.subscribers.length; i++) {
+      const { mode, subscriber } = this.subscribers[i];
+      if (mode === _mode) {
+        return await subscriber(data);
       }
+    }
   }
 
-  async dispatch(mode, data) {}
+  async dispatch(mode, data) { }
 };
 
 App.register('ChannelBase', Channel);

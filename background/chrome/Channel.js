@@ -1,9 +1,10 @@
-//#ChannelBase as Channel, ArrayWithID;
+//#ChannelBase as Channel,
+//ArrayWithID;
 
 const ports = new ArrayWithID();
 const _queries = new Map();
 chrome.runtime.onConnect.addListener(port => {
-    if(port.name !== 'osnot-main') {
+    if (port.name !== 'osnot-main') {
         port.disconnect();
         return;
     }
@@ -33,8 +34,8 @@ chrome.runtime.onConnect.addListener(port => {
         }
 
         const _data = await Channel.get(channel).notify(mode, data);
-        
-        if(disconnected) {
+
+        if (disconnected) {
             return;
         }
 
@@ -55,8 +56,8 @@ const ChannelChrome = class extends Channel {
     }
 
     static get(name) {
-        if(!Channel.has(name)) {
-          return new ChannelChrome(name);
+        if (!Channel.has(name)) {
+            return new ChannelChrome(name);
         }
 
         return Channel.get(name);

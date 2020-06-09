@@ -84,7 +84,7 @@
  */
 
 *[theme="osnot-dark"] ui-hide-overlay {
-    background-color: var(--color-3);
+    background-color: #121212;
 }
 
 /*
@@ -113,6 +113,24 @@
 
 *[theme="osnot-dark"] ui-information ui-text:nth-of-type(2) {
     color: var(--color-5);
+}
+
+/*
+ *   ui-large-button, LargeButton.js
+ */
+
+*[theme="osnot-dark"] ui-large-button {
+    color: var(--color-2);
+    background-color: #505050;
+}
+
+*[theme="osnot-dark"] ui-large-button:hover {
+    background-color: rgba(187, 134, 252, 0.1);
+    cursor: pointer;
+}
+
+*[theme="osnot-dark"] ui-large-button svg path {
+    fill: var(--color-2);
 }
 
 /*
@@ -255,6 +273,42 @@
 
 *[theme="osnot-dark"] ui-stream favicon {
     background-color: #FFFFFF;
+}
+
+/*
+ *   ui-stream-full, StreamFull.js
+ */
+
+*[theme="osnot-dark"] ui-stream-full {
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+    background-color: #505050;
+}
+
+*[theme="osnot-dark"] ui-stream-full ui-avatar {
+    background-color: #121212;
+}
+
+*[theme="osnot-dark"] ui-stream-full ui-stream-info {
+    color: #FFFFFF;
+}
+
+*[theme="osnot-dark"] ui-stream-full ui-stream-info path {
+    fill: #FFFFFF;
+}
+
+*[theme="osnot-dark"] ui-stream-full ui-stream-info[info="viewers"] {
+    background-color: #121212;
+    color: #FFFFFF;
+}
+
+*[theme="osnot-dark"] ui-stream-full ui-stream-info[info="username"] {
+    background-color: #121212;
+    color: #FFFFFF;
+}
+
+*[theme="osnot-dark"] ui-stream-full ui-stream-info[info="viewers"] path {
+    fill: #FFFFFF;
 }
 
 /*

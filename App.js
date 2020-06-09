@@ -93,11 +93,11 @@ const App = (function () {
       }
 
       if (this.mode === Throttle.MODE.AWAIT_LAST) {
-        if(this.timeoutID_ > -1) {
+        if (this.timeoutID_ > -1) {
           clearTimeout(this.timeoutID_);
         }
 
-        if(this.timeoutID_ === -1) {
+        if (this.timeoutID_ === -1) {
           let next;
           this.promise_ = new Promise(resolve => next = resolve);
 
@@ -140,12 +140,13 @@ const App = (function () {
     */
     LazyLoader: new (class {
       constructor() {
-        this.appImportRegex = /\/\/#([a-zA-Z0-9-_,{}\+ ]+);/g;
+        this.appImportRegex = /\/\/#([a-zA-Z0-9-_,{}\+ \r\n//]+);/g;
         this.appTempRegex = /\/\/#([a-zA-Z0-9-_{}]+)\?/g;
         this.appGetRegex = /([a-zA-Z0-9-_{}\+]+)/g;
       }
 
       async _apply(input) {
+        // input = input.replace(/[\r\n//]/g, '');
         let appImport;
 
         while ((appImport = this.appTempRegex.exec(input)) !== null) {
@@ -159,7 +160,7 @@ const App = (function () {
           if (appImport[1].indexOf(',') > -1) {
             constNames = appImport[1].split(/ ?, ?/gm).map(name => name.indexOf(' as ') > -1 ? name.split(' as ')[1] : name).join(', ').replace(/\+/, ', ');
             importNames = appImport[1].split(/ ?, ?/gm).map(name => name.indexOf(' as ') > -1 ? name.split(' as ')[0] : name).join(', ');
-            input = input.replace(appImport[0], `const [${constNames}] = await App.get(${importNames.replace(this.appGetRegex, `'$1'`)});`);
+            input = input.replace(appImport[0], `const [${constNames.replace(/(\/\/)|[\r\n]/g, '')}] = await App.get(${importNames.replace(this.appGetRegex, `'$1'`).replace(/(\/\/)|[\r\n]/g, '')});`);
           } else {
             if (appImport[1].indexOf(' as ') > -1) {
               constNames = appImport[1].split(' as ')[1].replace(/\+/, ', ');
@@ -202,7 +203,7 @@ const App = (function () {
     })(),
     lang: new (class {
       constructor() {
-        this.toLang = /\/\*τ\(([a-zA-Z0-9-_]+),{(.+)}\)\*\//;
+        this.toLang = /'{0,1}\/\*τ\(([a-zA-Z0-9-_]+),{(.+)}\)\*\/'{0,1}/;
       }
 
       async _apply(input) {
@@ -246,6 +247,14 @@ const App = (function () {
     return chunks;
   };
 
+
+
+  const ArrayIterate = async (array, callback) => {
+    for (let i in array) {
+      await callback(i, array[i]);
+    }
+  }
+
   const ArrayWithID = class {
     constructor(minimum = 0) {
       this.minimum = minimum;
@@ -275,8 +284,8 @@ const App = (function () {
     }
 
     getID(object) {
-      for(let id in this.array) {
-        if(this.array[id] === object) {
+      for (let id in this.array) {
+        if (this.array[id] === object) {
           return id;
         }
       }
@@ -284,7 +293,7 @@ const App = (function () {
     }
 
     forEach(callback) {
-      for(let id in this.array) {
+      for (let id in this.array) {
         callback(this.array[id]);
       }
       return this;
@@ -351,7 +360,7 @@ const App = (function () {
     }
 
     async load(dirName, browser = 'json') {
-      const r = await fetch(Utils.path(dirName, 'main.' + browser));
+      const r = await fetch(Utils.path(dirName, `main.${browser}.json`));
 
       if (!r.ok) {
         console.log('err loading:', dirName);
@@ -476,6 +485,7 @@ const App = (function () {
   WebApp.register('Throttle', Throttle);
   WebApp.register('Utils', Utils);
   WebApp.register('Chunker', Chunker);
+  WebApp.register('ArrayIterate', ArrayIterate)
   WebApp.register('ArrayWithID', ArrayWithID);
 
   return WebApp;

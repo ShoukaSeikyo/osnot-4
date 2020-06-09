@@ -1,4 +1,6 @@
-//#Browser, ImageCache, StreamNotificationBase as StreamNotification;
+//#Browser,
+//ImageCache,
+//StreamNotificationBase as StreamNotification;
 
 const NotificationList = {};
 const BR = "\n";
@@ -17,12 +19,14 @@ const ChromeStreamNotification = class extends StreamNotification {
         this.notificationID;
         this.dismissID;
 
-        ImageCache.getBase64(stream.cache.avatar).then((base64) => {
+        const { avatar, customUsername, username, game, title } = stream.cache;
+
+        ImageCache.getBase64(avatar).then((base64) => {
             chrome.notifications.create({
                 type: 'basic',
                 iconUrl: base64,
-                title: stream.cache.customUsername.length > 0 ? stream.cache.customUsername : stream.cache.username,
-                message: stream.cache.game + BR + stream.cache.title,
+                title: customUsername.length > 0 ? customUsername : username,
+                message: game + BR + title,
                 buttons: [
                     { title: Browser.text('NOTIFICATION_DESKTOP_OPEN') },
                     { title: Browser.text('NOTIFICATION_DESKTOP_DISMISS') }
@@ -30,9 +34,7 @@ const ChromeStreamNotification = class extends StreamNotification {
             }, (id) => {
                 NotificationList[id] = this;
                 this.notificationID = id;
-                this.dismissID = setTimeout(() => {
-                    this.dismiss();
-                }, 30e3);
+                this.dismissID = setTimeout(() => this.dismiss(), 30e3);
             });
         });
     }

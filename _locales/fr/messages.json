@@ -3,7 +3,6 @@
 		"message": "Streams en ligne",
 		"description": ""
 	},
-
 	"EDIT_STREAM": {
 		"message": "Éditer un stream.",
 		"description": ""
@@ -32,13 +31,6 @@
 		"message": "Modifier",
 		"description": ""
 	},
-
-
-
-
-
-
-
 	"HELP": {
 		"message": "Aide",
 		"description": ""
@@ -63,19 +55,12 @@
 		"message": "Twitter",
 		"description": ""
 	},
-
-
-
-
-
-	
-
 	"SETTINGS": {
 		"message": "Paramètres",
 		"description": ""
 	},
 	"THEMES": {
-		"message": "Thèmes",
+		"message": "Interface",
 		"description": ""
 	},
 	"MUTE_NOTIFICATIONS": {
@@ -90,13 +75,6 @@
 		"message": "Rechercher",
 		"description": ""
 	},
-
-
-
-
-
-	
-
 	"GENERAL": {
 		"message": "Option de stream par défaut",
 		"description": ""
@@ -121,19 +99,48 @@
 		"message": "Son personnalisé.",
 		"description": ""
 	},
-
-
-
-
-
-
-
 	"NOTIFICATION_DESKTOP_OPEN": {
 		"message": "Ouvrir",
 		"description": ""
 	},
 	"NOTIFICATION_DESKTOP_DISMISS": {
 		"message": "Fermer",
+		"description": ""
+	},
+	"INTERFACE_GLOBAL": {
+		"message": "Paramètres globaux de l'interface",
+		"description": ""
+	},
+	"INTERFACE_ICON": {
+		"message": "Appliquer la couleur du thème à l'icône.",
+		"description": ""
+	},
+	"INTERFACE_FULL_STREAM": {
+		"message": "Afficher toutes les informations du stream.",
+		"description": ""
+	},
+	"SCAN_URLS": {
+		"message": "Scanner des URL(s)",
+		"description": ""
+	},
+	"DID_U_KNOW": {
+		"message": "Saviez-vous ?",
+		"description": ""
+	},
+	"ALSO_SCAN_MAIN": {
+		"message": "Vous pouvez aussi scanner une page supportée en ouvrant ce popup en étant sur celle-çi.",
+		"description": ""
+	},
+	"PASTE_URLS": {
+		"message": "Collez des URL(s), une par ligne.",
+		"description": ""
+	},
+	"PROCESS_URLS": {
+		"message": "Traiter les URL(s)",
+		"description": ""
+	},
+	"SCANNED_URLS": {
+		"message": "URL(s) traitée(s).",
 		"description": ""
 	}
 }

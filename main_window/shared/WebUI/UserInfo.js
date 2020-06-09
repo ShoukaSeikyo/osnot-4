@@ -52,8 +52,8 @@ const UserInfo = class extends Component {
         `;
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.onData('stream', async ({ value: { fullID, cache: { customUsername, username, url, customURL } } }) => {
             this.element.querySelector('ui-avatar').setAttribute('fullid', fullID);
@@ -65,7 +65,7 @@ const UserInfo = class extends Component {
         });
 
         this.onEvent('input', 'change', ({ target }) => {
-            if(target.value.length === 0) {
+            if (target.value.length === 0) {
                 target.value = this.getData(`default_${target.getAttribute('name')}`);
             }
             this.setData(target.getAttribute('name'), target.value);

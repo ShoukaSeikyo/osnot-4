@@ -6,9 +6,9 @@ const StorageNode = class {
         this.isNode = typeof value === 'object';
         this.parent = null;
 
-        if(this.isNode) {
+        if (this.isNode) {
             this.children = new Map();
-            for(let key in value) {
+            for (let key in value) {
                 this.createChild(key, value[key]);
             }
         } else {
@@ -27,7 +27,7 @@ const StorageNode = class {
     }
 
     get toNode() {
-        return `${this.hasParent ? this.parent.toNode + '.':''}${this.name}`;
+        return `${this.hasParent ? this.parent.toNode + '.' : ''}${this.name}`;
     }
 
     get toDebug() {
@@ -52,11 +52,11 @@ const StorageNode = class {
     has(node) {
         const { nodes, first } = this.popNode(node);
 
-        if(nodes.length < 1) {
+        if (nodes.length < 1) {
             return this.children.has(first);
         }
 
-        if(this.children.has(first)) {
+        if (this.children.has(first)) {
             return this.children.get(first).has(nodes);
         }
 
@@ -64,14 +64,14 @@ const StorageNode = class {
     }
 
     get(node, getValue) {
-        if(!this.isNode) {
+        if (!this.isNode) {
             return this.nodeValue;
         }
 
         const { nodes, first } = this.popNode(node);
 
-        if(this.has(first)) {
-            if(nodes.length === 0) {
+        if (this.has(first)) {
+            if (nodes.length === 0) {
                 return this.children.get(first).toStorage;
             } else {
                 return this.children.get(first).get(nodes, getValue);
@@ -82,7 +82,7 @@ const StorageNode = class {
     }
 
     set(node, setValue) {
-        if(node.length === 0) {
+        if (node.length === 0) {
             this.isNode = false;
             this.nodeValue = setValue;
 
@@ -90,8 +90,8 @@ const StorageNode = class {
         }
 
         const { nodes, first } = this.popNode(node);
-        if(!this.has(first)) {
-            if(nodes.length === 0) {
+        if (!this.has(first)) {
+            if (nodes.length === 0) {
                 this.createChild(first, setValue);
             } else {
                 this.createChild(first);
@@ -105,7 +105,7 @@ const StorageNode = class {
     }
 
     get toStorage() {
-        if(!this.isNode) {
+        if (!this.isNode) {
             return this.nodeValue;
         }
 

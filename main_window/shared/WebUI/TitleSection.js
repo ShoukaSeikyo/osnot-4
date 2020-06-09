@@ -23,16 +23,13 @@ const TitleSection = class extends Component {
 
     static baseHTML({ text = '', debug = false }) {
         return `
-            <ui-title-section ${ debug ? 'debug' : '' }>${ text }</ui-title-section>
+            <ui-title-section ${ debug ? 'debug' : ''}>${text}</ui-title-section>
         `;
     }
 
-    constructor() {
-        super();
-
-        this.onData('text', ({ element, value }) => {
-            element.innerText = value;
-        });
+    constructor(props) {
+        super(props);
+        this.onData('text', ({ element, value }) => element.innerText = value);
     }
 };
 

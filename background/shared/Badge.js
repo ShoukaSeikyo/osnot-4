@@ -20,7 +20,7 @@ const Badge = class {
 const colorRegex = /([a-f0-9]{6}|[a-f0-9]{3})/i;
 Channel.get('badge')
     .subscribe('color', async ({ color }) => {
-        if(colorRegex.test(color)) {
+        if (colorRegex.test(color)) {
             INSTANCE.color(color);
             return true;
         }
@@ -28,7 +28,7 @@ Channel.get('badge')
         return false;
     })
     .subscribe('icon', async ({ color }) => {
-        if(colorRegex.test(color)) {
+        if (colorRegex.test(color)) {
             INSTANCE.icon(color);
             return true;
         }

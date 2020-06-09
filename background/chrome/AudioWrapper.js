@@ -1,4 +1,7 @@
-//#AudioWrapperBase as AudioWrapper, Throttle;
+//#AudioWrapperBase as AudioWrapper,
+//Throttle;
+
+const chromeBackgroundURL = 'chrome-extension://ccmkbegdpiakgojificdjdbfcfnepdgl/_generated_background_page.html';
 
 const ChromeAudioWrapper = class extends AudioWrapper {
     static get list() {
@@ -15,7 +18,7 @@ const ChromeAudioWrapper = class extends AudioWrapper {
 
     async play(volume) {
         this.stop();
-        if(this.valid) {
+        if (this.valid) {
             this.audio.volume = volume >= 0 ? volume : this.volume;
             this.audio.play();
         }
@@ -45,7 +48,7 @@ const ChromeAudioWrapper = class extends AudioWrapper {
 
     setVolume(value) {
         super.setVolume(value);
-        if(this.valid) {
+        if (this.valid) {
             this.audio.volume = this.volume;
         }
 
@@ -57,9 +60,11 @@ const ChromeAudioWrapper = class extends AudioWrapper {
     }
 
     load(file) {
-        this.audio = new Audio(file);
-        this.audio.volume = this.volume;
-        this.audio.loop = false;
+        if (file !== null && file !== chromeBackgroundURL) {
+            this.audio = new Audio(file);
+            this.audio.volume = this.volume;
+            this.audio.loop = false;
+        }
 
         return this;
     }

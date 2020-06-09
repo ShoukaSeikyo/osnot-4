@@ -1,4 +1,6 @@
-//#Channel, Storage;
+//#Channel,
+//Storage,
+//ArrayIterate;
 
 const Settings = class {
 
@@ -7,8 +9,12 @@ const Settings = class {
 
         this.setDefault('notify', 7);
         this.setDefault('theme', 'osnot-original');
+        this.setDefault('theme-icon', false);
+        this.setDefault('full-stream', false);
+        this.setDefault('icon-color', '#4BB0FF');
         this.setDefault('per-row', 6);
         this.setDefault('server-url', `https://osnot.orandja.net`);
+        // this.setDefault('server-url', `http://localhost:8080`);
     }
 
     setDefault(name, value) {
@@ -16,7 +22,7 @@ const Settings = class {
     }
 
     setValue(name, value) {
-        if(this.settings.has(name) && typeof this.settings.get(name) === typeof value && this.settings.get(name) !== value) {
+        if (this.settings.has(name) && typeof this.settings.get(name) === typeof value && this.settings.get(name) !== value) {
             this.settings.set(name, value);
         }
 
@@ -25,7 +31,7 @@ const Settings = class {
     }
 
     getValue(name, value) {
-        if(this.settings.has(name)) {
+        if (this.settings.has(name)) {
             return this.settings.get(name);
         }
         return value;
@@ -53,9 +59,5 @@ Channel.get('settings')
         return settings.setValue(name, setValue);
     });
 
-const settingsStorage = Storage.get('settings', {});
-for(let key in settingsStorage) {
-    settings.setValue(key, settingsStorage[key]);
-}
-
+await ArrayIterate(Storage.get('settings', {}), settings.setValue);
 App.register('Settings', settings);

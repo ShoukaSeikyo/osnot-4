@@ -68,27 +68,22 @@ const Slider = class extends Component {
     static baseHTML({ text = 'Place Holder', icon = '', disabled = false, min = 0.3, max = 1 }) {
         return `
             <ui-slider>
-                <ui-text>${ text }</ui-text>
-                <ui-slider-icon>${ icon }</ui-slider-icon>
-                <input ${ disabled ? 'disabled' : ''} type="range" min="${ min }" max="${ max }" step="0.01" value="1" style="--range-value: 1;">
+                <ui-text>${ text}</ui-text>
+                <ui-slider-icon>${ icon}</ui-slider-icon>
+                <input ${ disabled ? 'disabled' : ''} type="range" min="${min}" max="${max}" step="0.01" value="1" style="--range-value: 1;">
             </ui-slider>
         `;
     };
 
-    constructor() {
-        super();
-        this.onEvent('input[type="range"]', 'input', ({ target }) => {
-            this.updateData('value', parseFloat(target.value));
-        });
+    constructor(props) {
+        super(props);
+        this.onEvent('input[type="range"]', 'input', ({ target }) => this.updateData('value', parseFloat(target.value)));
 
-        this.onData('disabled', ({ value }) => {
-            this.setAttribute('input[type="range"]', 'disabled', value);
-        });
+        this.onData('disabled', ({ value }) => this.setAttribute('input[type="range"]', 'disabled', value));
 
         this.onData('input[type="range"]', 'value', ({ element, value }) => {
             const min = this.getProperty('min', 0.3);
-            const pos = (value - min) / (this.getProperty('max', 1) - min);
-            element.style = `--range-value: ${ pos };`;
+            element.style = `--range-value: ${((value - min) / (this.getProperty('max', 1) - min))};`;
             element.value = value;
         });
     }

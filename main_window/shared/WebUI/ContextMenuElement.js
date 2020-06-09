@@ -45,30 +45,26 @@ const ContextMenuElement = class extends Component {
         };
     }
 
-    static baseHTML({separator, icon, text}) {
+    static baseHTML({ separator = false, icon = '', text = 'Empty Element' }) {
         return `
-            <ui-context-element ${separator === true ? 'separator' : ''}>
-                <ui-context-icon>${icon}</ui-context-icon>
-                <ui-text>${text}</ui-text>
+            <ui-context-element ${ separator === true ? 'separator' : ''}>
+                <ui-context-icon>${ icon}</ui-context-icon>
+                <ui-text>${ text}</ui-text>
             </ui-context-element>
         `;
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
-        this.setProperty('separator', false);
-        this.setProperty('icon', '');
-        this.setProperty('text', 'Empty Element');
-
-        this.onEvent('click', ({ component }) => {
-            if(this.constructor === ContextMenuElement) {
-                component.parent.updateData('visible', false);
+        this.onEvent('click', ({ component: { parent } }) => {
+            if (this.constructor === ContextMenuElement) {
+                parent.updateData('visible', false);
             }
         });
     }
 
-    
+
 
     create(pos) {
         return super.create(pos, this.parentComponent.element.querySelector('ui-context-menu'));

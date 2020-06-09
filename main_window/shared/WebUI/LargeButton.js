@@ -1,19 +1,17 @@
 //#Component;
 
-const ConfirmButton = class extends Component {
+const LargeButton = class extends Component {
 
     static get name() {
-        return 'confirm-button';
+        return 'large-button';
     }
 
     static get rules() {
         return {
             'this': `
-                --allow-delete: 100%;
-                --delay: 1.5;
                 display: block;
                 width: calc(var(--html-width) - var(--normal-size));
-                margin: var(--half-size) var(--half-size);
+                margin: 0 var(--half-size);
                 padding: var(--quarter-size) 0;
                 height: var(--half-size);
                 vertical-align: middle;
@@ -22,15 +20,6 @@ const ConfirmButton = class extends Component {
                 font-weight: bold;
                 text-align: center;
                 overflow: hidden;
-                transition: background-position-x .2s;
-                
-                background-size: 200% 100% !important;
-                background-position-x: var(--allow-delete);
-            `,
-            'this:hover': `
-                --allow-delete: 0%;
-                cursor: pointer;
-                transition: background-position-x calc(var(--delay) * 1s) linear;
             `,
 
             'this *': `
@@ -66,27 +55,15 @@ const ConfirmButton = class extends Component {
         };
     }
 
-    static baseHTML({ text = '', icon = '', delay = '1.5' }) {
+    static baseHTML({ text = '', icon = '' }) {
         return `
-            <ui-confirm-button style="--delay: ${ delay};">
+            <ui-large-button>
                 <ui-text>${ text}</ui-text>
                 ${ icon}
-            </ui-confirm-button>
+            </ui-large-button>
         `;
-    }
-
-    constructor(props) {
-        super(props);
-
-        this.onEvent('click', ({ handlerTarget, domEvent }) => {
-            const posValue = window.getComputedStyle(handlerTarget).getPropertyValue('background-position-x');
-            if (domEvent.shiftKey || posValue === '0%' || posValue === '0px' || posValue === '0') {
-                this.updateData('confirm', true);
-                this.removeData('confirm');
-            }
-        });
     }
 };
 
-Component.register(ConfirmButton);
-App.register('ui-component-confirm-button', ConfirmButton);
+Component.register(LargeButton);
+App.register('ui-component-large-button', LargeButton);

@@ -27,7 +27,7 @@ const Switch = class extends Component {
                 display: inline-block;
                 vertical-align: middle;
             `,
-            
+
             'ui-switch-icon': `
                 float: left;
                 padding: var(--quarter-size) 0;
@@ -79,11 +79,11 @@ const Switch = class extends Component {
 
     static baseHTML({ icon, text, checked, border, small }) {
         return `
-            <ui-switch ${ border ? 'border' : '' } ${ small ? 'small' : '' }>
+            <ui-switch ${ border ? 'border' : ''} ${small ? 'small' : ''}>
                 <ui-switch-icon>${icon}</ui-switch-icon>
                 <ui-text>${text}</ui-text>
                 <label>
-                    <input ${ checked ? 'checked': '' } type="checkbox">
+                    <input ${ checked ? 'checked' : ''} type="checkbox">
                     ▶(switch)
                 </label>
             </ui-switch>
@@ -96,8 +96,12 @@ const Switch = class extends Component {
         return parseInt(output, 2);
     };
 
-    constructor() {
-        super();
+    static fromByte(byte, position) {
+        return (byte & position) === position;
+    }
+
+    constructor(props) {
+        super(props);
 
         this.onEvent('input', 'change', ({ target }) => {
             this.setData('value', target.checked);

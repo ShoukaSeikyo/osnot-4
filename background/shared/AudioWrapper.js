@@ -1,5 +1,9 @@
-//#Throttle, Storage, Channel, Utils as {between};
+//#Throttle,
+//Storage,
+//Channel,
+//Utils as {between};
 const AudioList = new Map();
+const chromeBackgroundURL = 'chrome-extension://ccmkbegdpiakgojificdjdbfcfnepdgl/_generated_background_page.html';
 
 const AudioWrapperBase = class {
 
@@ -25,9 +29,7 @@ const AudioWrapperBase = class {
         this.volume = volume;
         this.loadBase64(base64);
 
-        this.throttle = new Throttle().setMode(Throttle.MODE.AWAIT_LAST).setCallback(async () => {
-            this.stop();
-        });
+        this.throttle = new Throttle().setMode(Throttle.MODE.AWAIT_LAST).setCallback(async () => this.stop());
 
         AudioList.set(this.id, this);
     }
@@ -92,7 +94,7 @@ Channel.get('audio')
         return true;
     })
     .subscribe('info', async ({ id = 'default' }) => {
-        if(AudioWrapper.has(id)) {
+        if (AudioWrapper.has(id)) {
             return AudioWrapper.get(id).asInfo;
         }
 
@@ -100,14 +102,13 @@ Channel.get('audio')
     })
     .subscribe('update', async (data) => {
         const { id = 'default', volume = 1, base64 = null } = data;
+
         if (!AudioWrapper.has(id)) {
             new AudioWrapper(data);
         } else {
             const audioWrapper = AudioWrapper.get(id);
             audioWrapper.setVolume(volume)
-            if(base64 !== null) {
-                audioWrapper.loadBase64(base64);
-            }
+            audioWrapper.loadBase64(base64);
         }
 
         AudioWrapper.save();
@@ -121,6 +122,9 @@ const audioStorage = Storage.get('audio', [{
     base64: '/static/default.ogg',
     volume: 1
 }]);
-for(let i in audioStorage) {
-    new AudioWrapper(audioStorage[i]);
+
+for (let i in audioStorage) {
+    if (audioStorage[i].base64 !== chromeBackgroundURL) {
+        new AudioWrapper(audioStorage[i]);
+    }
 }

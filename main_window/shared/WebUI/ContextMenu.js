@@ -62,8 +62,8 @@ const ContextMenu = class extends Component {
         `;
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.addElement = 'ui-context-menu';
 
         this.onData('visible', ({ element, value }) => {
@@ -74,9 +74,7 @@ const ContextMenu = class extends Component {
             }
         });
 
-        this.onData('ui-context-menu', 'position', ({ element, value: { x, y, width = 0 } }) => {
-            element.setAttribute('style', ` --left: ${x}; --top: ${y}; --width: ${width};`);
-        });
+        this.onData('ui-context-menu', 'position', ({ element, value: { x, y, width = 0 } }) => element.setAttribute('style', ` --left: ${x}; --top: ${y}; --width: ${width};`));
 
         this.onEvent('click', ({ domEvent }) => {
             if (domEvent.path[0] === this.element) {

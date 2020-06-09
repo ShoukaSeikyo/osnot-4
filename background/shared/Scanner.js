@@ -1,4 +1,6 @@
-//#Channel, Stream, Settings;
+//#Channel,
+//Stream,
+//Settings;
 
 let INSTANCE;
 const Scanner = class {
@@ -15,44 +17,56 @@ const Scanner = class {
 
         this.regexps = [];
 
-        fetch(`${Scanner.URL}/list`).then(async r => {
-            if(r.ok) {
-                (await r.json()).forEach(regex => {
-                    regex.exp = new RegExp(regex.exp.slice(1, -1));
-                    this.regexps.push(regex);
-                })
-            }
-        });
+        fetch(`${Scanner.URL}/list`)
+            .then(r => (r.ok ? r.json() : []))
+            .then(exps => exps.forEach(regex => {
+                regex.exp = new RegExp(regex.exp.slice(1, -1));
+                this.regexps.push(regex);
+            }));
+        // .then(async r => {
+        //     if(r.ok) {
+        //         (await r.json()).forEach(regex => {
+        //             regex.exp = new RegExp(regex.exp.slice(1, -1));
+        //             this.regexps.push(regex);
+        //         })
+        //     }
+        // });
     }
 
-    async retrieveTab() {}
+    async retrieveTab() { }
 
-    async handleURL({ tab: tabURL, url }) {
-        if(this.scanned.indexOf(url) > -1) {
-            return false;
+    async handleURL({ tab: tabURL, url }, perURL = false) {
+        if (!perURL) {
+            if (this.scanned.indexOf(url) > -1) {
+                return false;
+            }
+
+            this.scanned.push(url);
         }
 
-        this.scanned.push(url);
-
-        for(let i in this.regexps) {
+        for (let i in this.regexps) {
             const { tab, exp, mode, id } = this.regexps[i];
-            if(!exp.test(url)) {
+            if (!exp.test(url)) {
                 continue;
             }
 
             const value = exp.exec(url)[1];
             const retrieved = await (await fetch(`${Scanner.URL}/scanner?service=${id}&mode=${mode}&value=${value}`)).json();
-            if(retrieved !== false && !Stream.has(retrieved.fullID) && this.ignored.indexOf(retrieved.fullID) === -1) {
-                if(tab) {
+            if (retrieved !== false && !Stream.has(retrieved.fullID) && this.ignored.indexOf(retrieved.fullID) === -1) {
+                if (tab) {
                     retrieved.cache.customURL = tabURL;
                 }
 
                 this.addList.push(retrieved);
-                if(this.addList.length < 2) {
+                if (!perURL && this.addList.length < 2) {
                     Channel.get('scanner').dispatch('retrieved', retrieved);
+                } else {
+                    return retrieved;
                 }
             }
         }
+
+        return false;
     }
 
     remove(fullID) {
@@ -61,24 +75,29 @@ const Scanner = class {
 
     get first() {
         this.retrieveTab();
-        if(this.addList.length > 0) {
+        if (this.addList.length > 0) {
             return this.addList[0];
         }
 
         return false;
     }
 
-    sendNext() {
-        if(this.first === false) {
-            return;
-        }
+    hasNext() {
+        return this.first !== false;
+    }
 
-        Channel.get('scanner').dispatch('retrieved', this.first);
+    sendNext() {
+        if (this.hasNext()) {
+            Channel.get('scanner').dispatch('retrieved', this.first);
+        }
     }
 };
 
 Channel.get('scanner')
-    .subscribe('get', async () => { 
+    .subscribe('handle', async ({ tab = {}, url }) => {
+        return await INSTANCE.handleURL({ tab, url }, true);
+    })
+    .subscribe('get', async () => {
         INSTANCE.retrieveTab();
     })
     .subscribe('add', async ({ fullID }) => {
@@ -89,8 +108,7 @@ Channel.get('scanner')
         INSTANCE.sendNext();
     })
     .subscribe('ignore', async ({ fullID }) => {
-        INSTANCE.ignored.push( INSTANCE.remove(fullID).fullID );
-        
+        INSTANCE.ignored.push(INSTANCE.remove(fullID).fullID);
         INSTANCE.sendNext();
     })
     .subscribe('first', async () => {

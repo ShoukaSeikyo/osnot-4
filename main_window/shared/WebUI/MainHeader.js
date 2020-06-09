@@ -87,18 +87,15 @@ const MainHeader = class extends Component {
             <ui-logo svg="logo">
                 ▶(logo)
             </ui-logo>
-            <ui-title>${appTitle}</ui-title>
+            <ui-title>${ appTitle}</ui-title>
             <ui-option-overlay>
                 <triangle></triangle>
                 <ui-search-bar>
-                    <input type="text" value="${ searchDefault }">
+                    <input type="text" value="${ searchDefault}">
                     <ui-icon svg="magnify">
                         ▶(magnify)
                     </ui-icon>
                 </ui-search-bar>
-                <ui-icon svg="list">
-                    ▶(list)
-                </ui-icon>
                 <ui-icon svg="gear">
                     ▶(gear)
                 </ui-icon>
@@ -107,24 +104,13 @@ const MainHeader = class extends Component {
         `;
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
-        this.onEvent('ui-search-bar ui-icon', 'click', ({ component }) => {
-            component.element.querySelector('ui-search-bar input').toggleAttribute('search');
-        });
-
-        this.onEvent('ui-search-bar input', 'focus', ({ target }) => {
-            target.value = target.value === this.getProperty('searchDefault') ? '' : target.value;
-        });
-
-        this.onEvent('ui-search-bar input', 'blur', ({ target }) => {
-            target.value = target.value.length < 1 ? this.getProperty('searchDefault') : target.value;
-        });
-
-        this.onEvent('ui-search-bar input', 'input', ({ target }) => {
-            this.updateData('search-value', target.value);
-        });
+        this.onEvent('ui-search-bar ui-icon', 'click', ({ component: { element } }) => element.querySelector('ui-search-bar input').toggleAttribute('search'));
+        this.onEvent('ui-search-bar input', 'focus', ({ target }) => target.value = target.value === this.getProperty('searchDefault') ? '' : target.value);
+        this.onEvent('ui-search-bar input', 'blur', ({ target }) => target.value = target.value.length < 1 ? this.getProperty('searchDefault') : target.value);
+        this.onEvent('ui-search-bar input', 'input', ({ target }) => this.updateData('search-value', target.value));
     }
 }
 

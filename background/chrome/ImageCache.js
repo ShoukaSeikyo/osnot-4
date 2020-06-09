@@ -13,7 +13,7 @@ const ChromeImageCache = class extends ImageCache {
             reader.readAsDataURL(await (await fetch(url)).blob());
             return await new Promise(resolve => {
                 reader.onload = () => resolve(this.images[url] = reader.result);
-                reader.onerror = () => this.getBase64('/static/blank.png').then(data => resolve(data));
+                reader.onerror = async () => resolve(await this.getBase64('/static/blank.png'));
             });
         } catch (e) {
             return await this.getBase64('/static/blank.png');

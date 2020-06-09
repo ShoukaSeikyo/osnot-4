@@ -3,7 +3,6 @@
 		"message": "Online streams",
 		"description": ""
 	},
-
 	"EDIT_STREAM": {
 		"message": "Edit a Stream.",
 		"description": ""
@@ -32,13 +31,6 @@
 		"message": "Edit",
 		"description": ""
 	},
-
-
-
-
-
-
-
 	"HELP": {
 		"message": "Help",
 		"description": ""
@@ -63,19 +55,12 @@
 		"message": "Twitter",
 		"description": ""
 	},
-
-
-
-
-
-
-
 	"SETTINGS": {
 		"message": "Settings",
 		"description": ""
 	},
 	"THEMES": {
-		"message": "Themes",
+		"message": "Interface",
 		"description": ""
 	},
 	"MUTE_NOTIFICATIONS": {
@@ -90,13 +75,6 @@
 		"message": "Search",
 		"description": ""
 	},
-
-
-
-
-
-
-
 	"GENERAL": {
 		"message": "Default stream settings",
 		"description": ""
@@ -121,19 +99,48 @@
 		"message": "Sound.",
 		"description": ""
 	},
-
-
-
-
-
-
-
 	"NOTIFICATION_DESKTOP_OPEN": {
 		"message": "Open",
 		"description": ""
 	},
 	"NOTIFICATION_DESKTOP_DISMISS": {
 		"message": "Dismiss",
+		"description": ""
+	},
+	"INTERFACE_GLOBAL": {
+		"message": "Global Interface Options",
+		"description": ""
+	},
+	"INTERFACE_ICON": {
+		"message": "Color the icon with the theme.",
+		"description": ""
+	},
+	"INTERFACE_FULL_STREAM": {
+		"message": "Show the full stream's informations on the main page.",
+		"description": ""
+	},
+	"SCAN_URLS": {
+		"message": "Scan URL(s)",
+		"description": ""
+	},
+	"DID_U_KNOW": {
+		"message": "Did you know ?",
+		"description": ""
+	},
+	"ALSO_SCAN_MAIN": {
+		"message": "You can also scan a page of a supported service by opening this popup while being on it.",
+		"description": ""
+	},
+	"PASTE_URLS": {
+		"message": "Paste URL(s), one per line.",
+		"description": ""
+	},
+	"PROCESS_URLS": {
+		"message": "Process URL(s)",
+		"description": ""
+	},
+	"SCANNED_URLS": {
+		"message": "Scanned URL(s).",
 		"description": ""
 	}
 }

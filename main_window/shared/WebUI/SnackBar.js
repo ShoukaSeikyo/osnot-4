@@ -34,12 +34,10 @@ const SnackBar = class extends Component {
         return `<ui-snackbar></ui-snackbar>`;
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
-        this.onData('visible', ({ value }) => {
-            this.setAttribute('visible', value);
-        });
+        this.onData('visible', ({ value }) => this.setAttribute('visible', value));
     }
 };
 
@@ -64,15 +62,13 @@ const SnackBarText = class extends Component {
     }
 
     static baseHTML({ text = '', width = '100' }) {
-        return `<ui-snackbar-text style="--width: ${ width }%;">${ text }</ui-snackbar-text>`;
+        return `<ui-snackbar-text style="--width: ${width}%;">${text}</ui-snackbar-text>`;
     }
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
-        this.onData('text', ({ element, value }) => {
-            element.innerText = value;
-        });
+        this.onData('text', ({ element, value }) => element.innerText = value);
     }
 
 };
@@ -105,7 +101,7 @@ const SnackBarButton = class extends Component {
     }
 
     static baseHTML({ text = '', width = '100' }) {
-        return `<ui-snackbar-button style="--width: ${ width }%;">${ text }</ui-snackbar-button>`;
+        return `<ui-snackbar-button style="--width: ${width}%;">${text}</ui-snackbar-button>`;
     }
 
 };

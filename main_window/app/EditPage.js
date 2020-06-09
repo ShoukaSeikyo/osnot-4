@@ -1,116 +1,81 @@
-//#Channel;
+//#Channel,
+//ui-component-page as Page,
+//ui-component-page-header as PageHeader,
+//ui-component-user-info as UserInfo,
+//ui-component-audio-file as AudioFile,
+//ui-component-switch as Switch,
+//ui-component-confirm-button as ConfirmButton,
+//ui-component-icon as Icon,
+//ui-component-title-section as TitleSection;
 
-//#ui-component-page as Page, ui-component-page-header as PageHeader, ui-component-user-info as UserInfo, ui-component-audio-file as AudioFile, ui-component-switch as Switch, ui-component-confirm-button as ConfirmButton;
-//#ui-component-icon as Icon, ui-component-title-section as TitleSection;
-let userInfo, desktop, tab, sound, audioFile, titleSection, saveIcon;
+new Page({ name: 'edit-page' })
 
-/////////////////////
-// COMPONENT SETUP //
-/////////////////////
-
-const editPage = new Page()
-    .setProperty('name', 'edit-page')
-.add(new PageHeader()
-    .setProperty('pageTitle', /*τ(EDIT_STREAM,{ })*/)
-    .add(saveIcon = new Icon()
-        .setProperty('svg', `▶(content-save)`)))
-.add(userInfo = new UserInfo())
-.add(desktop = new Switch()
-    .setProperty('text', /*τ(NOTIFICATION_DESKTOP,{ })*/)
-    .setProperty('icon', `▶(desktop)`)
-    .setProperty('border', true)
-    .setProperty('small', true))
-.add(tab = new Switch()
-    .setProperty('text', /*τ(NOTIFICATION_TAB,{ })*/)
-    .setProperty('icon', `▶(tab-plus)`)
-    .setProperty('border', true)
-    .setProperty('small', true))
-.add(sound = new Switch()
-    .setProperty('text', /*τ(NOTIFICATION_AUDIO,{ })*/)
-    .setProperty('icon', `▶(music-box)`)
-    .setProperty('border', true)
-    .setProperty('small', true))
-.add(audioFile = new AudioFile()
-    .setProperty('name', 'stream-edit')
-    .setProperty('text', /*τ(NOTIFICATION_AUDIO_CUSTOM_CUE,{ })*/)
-    .setProperty('disabledOnEmpty', true))
-.add(confirmButton = new ConfirmButton()
-    .setProperty('text', /*τ(DELETE_STREAM,{ })*/)
-    .setProperty('icon', `▶(delete-empty)`))
-.add(titleSection = new TitleSection()
-    .setProperty('debug', true));
-
-//////////////////////
-// COMPONENT EVENTS //
-//////////////////////
-
-audioFile
-.onData('playID', async ({ value }) => {
-    audioFile.setAttribute('playing', true);
-    await Channel.get('audio').dispatch('play', { id: value, volume: audioFile.getData('volume', -1) });
-    audioFile.setAttribute('playing', false);
-});
-
-confirmButton
-.onData('confirm', async () => {
-    await Channel.get('stream').dispatch('delete', { fullID: editPage.getData('fullID') });
-    editPage.updateData('visible', false);
-});
-
-saveIcon
-    .onEvent('click', async ({ component }) => {
-        await Channel.get('stream').dispatch('update', {
-            fullID: editPage.getData('fullID'),
-            cache: {
-                customUsername: userInfo.getData('username', ''),
-                customURL: userInfo.getData('url', ''),
-                notify: Switch.toByte(desktop, tab, sound)
-            }
-        });
-
-        if(audioFile.getData('base64', '') !== '') {
-            await Channel.get('audio').dispatch('update', {
-                id: editPage.getData('fullID'),
-                volume: audioFile.getData('volume'),
-                base64: audioFile.getData('base64')
-            });
-        } else if(audioFile.getData('id') !== 'default') {
-            await Channel.get('audio').dispatch('update', {
-                id: editPage.getData('fullID'),
-                volume: audioFile.getData('volume')
-            });
-        }
-
-
-        editPage.updateData('visible', false);
-    });
-
-editPage
-    .onData('stream', async ({ value }) => {
+    .onData('stream', async ({ component, children, value }) => {
         const { fullID, cache } = value;
-        editPage.setData('fullID', fullID);
-        titleSection.updateData('text', `ID [${fullID}]`);
-        userInfo.updateData('stream', value);
 
-        audioFile.updateData('audio', await Channel.get('audio').dispatch('info', { id: fullID }));
-        
-        sound.updateData('value', (cache.notify & 1) === 1);
-        tab.updateData('value', (cache.notify & 2) === 2);
-        desktop.updateData('value', (cache.notify & 4) === 4);
-        
-        editPage.updateData('visible', true);
+        component.setData('fullID', fullID);
+        children.titleSection.updateData('text', `ID [${fullID}]`);
+        children.userInfo.updateData('stream', value);
+
+        children.audioFile.updateData('audio', await Channel.get('audio').dispatch('info', { id: fullID }));
+
+        children.sound.updateData('value', Switch.fromByte(cache.notify, 1));
+        children.tab.updateData('value', Switch.fromByte(cache.notify, 2));
+        children.desktop.updateData('value', Switch.fromByte(cache.notify, 4));
+
+        component.updateData('visible', true);
     })
-    .onData('visible', ({ value }) => {
+
+    .onData('visible', ({ component, value }) => {
         if (!value) {
-            editPage.removeData('fullID');
-            editPage.removeData('stream');
+            component.removeData('fullID');
+            component.removeData('stream');
         }
-    });
+    })
 
-//////////////////////
-// COMPONENT APPEND //
-//////////////////////
+    .add(new PageHeader({ pageTitle: '/*τ(EDIT_STREAM,{ })*/' })
+        .add(new Icon({ svg: `▶(content-save)` })
+            .onEvent('click', async ({ root }) => {
+                const { userInfo, audioFile, desktop, tab, sound } = root.children;
+                await Channel.get('stream').dispatch('update', {
+                    fullID: root.getData('fullID'),
+                    cache: {
+                        customUsername: userInfo.getData('username', ''),
+                        customURL: userInfo.getData('url', ''),
+                        notify: Switch.toByte(desktop, tab, sound)
+                    }
+                });
 
-editPage.append();
+                if (audioFile.getData('base64', '') !== '') {
+                    await Channel.get('audio').dispatch('update', {
+                        id: root.getData('fullID'),
+                        volume: audioFile.getData('volume'),
+                        base64: audioFile.getData('base64')
+                    });
+                } else if (audioFile.getData('id') !== 'default') {
+                    await Channel.get('audio').dispatch('update', {
+                        id: root.getData('fullID'),
+                        volume: audioFile.getData('volume')
+                    });
+                }
 
-App.register('EDITPAGE', editPage);
+                root.updateData('visible', false);
+            })))
+    .add(new UserInfo(), 'userInfo')
+    .add(new Switch({ text: '/*τ(NOTIFICATION_DESKTOP,{ })*/', icon: `▶(desktop)`, border: true, small: true }), 'desktop')
+    .add(new Switch({ text: '/*τ(NOTIFICATION_TAB,{ })*/', icon: `▶(tab-plus)`, border: true, small: true }), 'tab')
+    .add(new Switch({ text: '/*τ(NOTIFICATION_AUDIO,{ })*/', icon: `▶(music-box)`, border: true, small: true }), 'sound')
+    .add('audioFile', new AudioFile({ name: 'stream-edit', text: '/*τ(NOTIFICATION_AUDIO_CUSTOM_CUE,{ })*/', disabledOnEmpty: true })
+        .onData('playID', async ({ component, value }) => {
+            component.setAttribute('playing', true);
+            await Channel.get('audio').dispatch('play', { id: value, volume: component.getData('volume', -1) });
+            component.setAttribute('playing', false);
+        }))
+    .add(new ConfirmButton({ text: '/*τ(DELETE_STREAM,{ })*/', icon: `▶(delete-empty)` })
+        .onData('confirm', async ({ root }) => {
+            await Channel.get('stream').dispatch('delete', { fullID: root.getData('fullID') });
+            root.updateData('visible', false);
+        }))
+    .add(new TitleSection({ debug: true }), 'titleSection')
+    .append()
+    .register('EDITPAGE');
