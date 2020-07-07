@@ -5,7 +5,7 @@
 const Settings = class {
 
     constructor() {
-        this.settings = new Map();
+        this.settingsMap = new Map();
 
         this.setDefault('notify', 7);
         this.setDefault('theme', 'osnot-original');
@@ -18,12 +18,12 @@ const Settings = class {
     }
 
     setDefault(name, value) {
-        this.settings.set(name, value);
+        this.settingsMap.set(name, value);
     }
 
     setValue(name, value) {
-        if (this.settings.has(name) && typeof this.settings.get(name) === typeof value && this.settings.get(name) !== value) {
-            this.settings.set(name, value);
+        if (this.settingsMap.has(name) && (typeof this.settingsMap.get(name) === typeof value) && this.settingsMap.get(name) !== value) {
+            this.settingsMap.set(name, value);
         }
 
         this.save();
@@ -31,8 +31,8 @@ const Settings = class {
     }
 
     getValue(name, value) {
-        if (this.settings.has(name)) {
-            return this.settings.get(name);
+        if (this.settingsMap.has(name)) {
+            return this.settingsMap.get(name);
         }
         return value;
     }
@@ -44,7 +44,7 @@ const Settings = class {
 
     get toStorage() {
         const output = {};
-        this.settings.forEach((value, key) => output[key] = value);
+        this.settingsMap.forEach((value, key) => output[key] = value);
         return output;
     }
 };
@@ -59,5 +59,5 @@ Channel.get('settings')
         return settings.setValue(name, setValue);
     });
 
-await ArrayIterate(Storage.get('settings', {}), settings.setValue);
+await ArrayIterate(Storage.get('settings', {}), (key, value) => settings.setValue(key, value));
 App.register('Settings', settings);
